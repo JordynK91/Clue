@@ -8,8 +8,11 @@ var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wre
 var playerCards = []
 var computer1Cards = []
 var computer2Cards = []
+
+
+// deal the cards
 var start = document.getElementById('start')
-var cardContainer= document.getElementById("cards")
+start.addEventListener("click", dealing);
 
 //select room, charecter, weapon for envelope 
 function dealing(){
@@ -25,7 +28,7 @@ function dealing(){
 	var weaponEnvelopeIndex = weaponArray.indexOf(weaponEnvelope)
 		weaponArray.splice(weaponEnvelopeIndex, 1)
 
-	//reamining cards are shuffled and distributed
+	//reamining cards are shuffled and distributed to the players
 	var cardArray = _.shuffle(roomArray.concat(charArray, weaponArray)) 
 	for (i=0; i<cardArray.length; i++){
 		if (i < 6){
@@ -38,17 +41,16 @@ function dealing(){
 			computer2Cards.push(cardArray[i])
 		}
 	}	
-}
 
-
-start.addEventListener("click", renderCards);
-
-function renderCards(){
-	for (i = 0; i<playerCards; i++){
+// player's cards are displayed
+	for (i = 0; i<playerCards.length; i++){
 		var card = document.createElement('div')
+		var value = document.createElement('div')
 		card.className = 'card'
-		cardContainer.appendChild(card);
-
+		value.className = 'value'
+		value.innerHTML = playerCards[i]
+		card.appendChild(value);
+		document.getElementById("cardContainer").appendChild(card);
 	}
 }
 

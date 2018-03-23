@@ -1,18 +1,18 @@
-#cardContainer{
-	width: 400px;
-	height: 400px;
-	border: solid;
-}
 
 
-#card{
-	width: 100px;
-	height: 100px;
+.card{
+	width: 150px;
+	height: 150px;
 	color: red;
 	border: solid;
-
-
+	display: inline-block;
+	text-align: center;
 }
+
+.value{
+	display: inline-block;
+}
+
 #start {
 	width: 100px;
 	height: 100px;
