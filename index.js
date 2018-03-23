@@ -52,7 +52,31 @@ function dealing(){
 		card.appendChild(value);
 		document.getElementById("cardContainer").appendChild(card);
 	}
+
+
+//computer1's cards are displayed 
+for (i = 0; i<computer1Cards.length; i++){
+		var card = document.createElement('div')
+		var value = document.createElement('div')
+		card.className = 'card'
+		value.className = 'value'
+		value.innerHTML = computer1Cards[i]
+		card.appendChild(value);
+		document.getElementById("computer1cardContainer").appendChild(card);
+	}
+
+//computer2's cards are displayed
+for (i = 0; i<computer2Cards.length; i++){
+		var card = document.createElement('div')
+		var value = document.createElement('div')
+		card.className = 'card'
+		value.className = 'value'
+		value.innerHTML = computer2Cards[i]
+		card.appendChild(value);
+		document.getElementById("computer2cardContainer").appendChild(card);
+	}
 }
+
 
 
 // roll dice

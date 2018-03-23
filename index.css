@@ -1,9 +1,7 @@
 
-
 .card{
 	width: 150px;
 	height: 150px;
-	color: red;
 	border: solid;
 	display: inline-block;
 	text-align: center;
@@ -19,3 +17,26 @@
 	background-color: red;
 }
 
+#cardContainer{
+	color: red;
+}
+
+#computer1cardContainer{
+	color: blue;
+}
+
+#computer2cardContainer{
+	color: green;
+}
+
+#board{
+	width: 800px;
+	height: 800px;
+	border: solid;
+}
+
+.room {
+	width: 100px;
+	height: 100px;
+	border: solid;
+}
