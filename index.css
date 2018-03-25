@@ -29,13 +29,8 @@
 	color: green;
 }
 
-#board{
-	width: 800px;
-	height: 800px;
-	border: solid;
-}
 
-.room {
+#dice {
 	width: 100px;
 	height: 100px;
 	border: solid;

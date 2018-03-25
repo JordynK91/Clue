@@ -8,6 +8,7 @@ var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wre
 var playerCards = []
 var computer1Cards = []
 var computer2Cards = []
+var dice = document.getElementById('dice')
 
 
 // deal the cards
@@ -80,7 +81,11 @@ for (i = 0; i<computer2Cards.length; i++){
 
 
 // roll dice
-function dice(){
-	return(_.random([lower=1], [upper=6]))
+dice.addEventListener("click", rollDice)
+
+function rollDice(){
+	var roll = _.random([lower=1], [upper=6])
+	console.log(roll)
+
 }
 
