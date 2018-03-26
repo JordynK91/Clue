@@ -8,12 +8,31 @@ var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wre
 var playerCards = []
 var computer1Cards = []
 var computer2Cards = []
+
+//dice and player pieces 
 var dice = document.getElementById('dice')
+var playerPiece = document.getElementById('playerPiece')
+var computer1Piece = document.getElementById('computer1Piece')
+var computer2Piece = document.getElementById('computer2Piece')
+
+var board = document.getElementById('board')
+
+//rooms 
+var hall = board.rows[0].cells[1]
+var study = board.rows[0].cells[0]
+var library = board.rows[1].cells[0]
+var lounge = board.rows[1].cells[3]
+var billardRoom = board.rows[2].cells[0]
+var diningRoom = board.rows[2].cells[3]
+var conservatory = board.rows[3].cells[0]
+var ballRoom = board.rows[3].cells[2]
+var kitchen = board.rows[3].cells[3]
 
 
 // deal the cards
 var start = document.getElementById('start')
 start.addEventListener("click", dealing);
+start.addEventListener('click', setPieces)
 
 //select room, charecter, weapon for envelope 
 function dealing(){
@@ -88,6 +107,13 @@ function rollDice(){
 	console.log(roll)
 
 }
+
+function setPieces(){
+	hall.appendChild(playerPiece)
+	conservatory.appendChild(computer1Piece)
+	diningRoom.appendChild(computer2Piece)
+}
+
 
 
 

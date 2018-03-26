@@ -36,6 +36,16 @@
 	border: solid;
 }
 
+.piece{
+width: 80px;
+height: 80px;
+border: solid;
+border-radius: 25%;
+text-align: center;
+background-color: lightblue;
+
+}
+
 table, th, td {
     border: 5px solid black;
 }
