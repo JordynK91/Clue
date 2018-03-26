@@ -193,9 +193,8 @@ function rollDice(){
 	if (currentLocation = hall){
 		for (i=0; i<hallOptions.length; i++){
 				hallOptions[i].style.backgroundColor = 'yellow'
-				var target = hallOptions[i]
-				target.addEventListener('click', function(){
-					target.appendChild(playerPiece)
+				hallOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
 				})
 			}
 		}
@@ -203,48 +202,74 @@ function rollDice(){
 	else if (currentLocation = study){
 		for (i=0; i<studyOptions.length; i++){
 				studyOptions[i].style.backgroundColor = 'yellow'
+				studyOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
+				})
+			}
 		}
-	}
 
 		else if (currentLocation = library){
 			for (i=0; i<libraryOptions.length; i++){
 				libraryOptions[i].style.backgroundColor = 'yellow'
+				libaryOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
+				})
 			}
 		}
 
 		else if (currentLocation = billardRoom){
 			for (i=0; i<billardRoomOptions.length; i++){
 				billardRoomOptions[i].style.backgroundColor = 'yellow'
+				billardRoomOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
+				})
 		}
 	}
 
 		else if (currentLocation = conservatory){
 			for (i=0; i<conservatoryOptions.length; i++){
 				conservatoryOptions[i].style.backgroundColor = 'yellow'
+				conservatoryptions[i].style.backgroundColor = 'yellow'
+				conservatoryOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
+			})
 		}
 	}
 
 		else if (currentLocation = ballRoom){
 			for (i=0; i<ballRoomOptions.length; i++){
 				ballRoomOptions[i].style.backgroundColor = 'yellow'
+				ballRoomOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
+			})
 		}
 	}
 
 		else if (currentLocation = kitchen){
 			for (i=0; i<kitchenOptions.length; i++){
 				kitchenOptions[i].style.backgroundColor = 'yellow'
+				kitchenOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
+			})
 		}
 	}
 
 		else if (currentLocation = diningRoom){
 			for (i=0; i<diningRoopmOptions.length; i++){
 				diningRoomnOptions[i].style.backgroundColor = 'yellow'
+				diningRoomOptions[i].addEventListener('click', function(e){
+					e.target.appendChild(playerPiece)
+			})
 		}
 	}
 
 	else if (currentLocation = lounge){
 		for (i=0; i<loungeOptions.length; i++){
 				loungeOptions[i].style.backgroundColor = 'yellow'
+				loungeOptions[i].addEventListener('click', function(e){
+				e.target.appendChild(playerPiece)
+			})
+
 		}
 	}
 }
