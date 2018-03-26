@@ -16,6 +16,7 @@ var computer1Piece = document.getElementById('computer1Piece')
 var computer2Piece = document.getElementById('computer2Piece')
 
 var board = document.getElementById('board')
+var diceResult = dice_result.getElementById
 
 //rooms 
 
@@ -103,11 +104,6 @@ for (i = 0; i<computer2Cards.length; i++){
 // roll dice
 dice.addEventListener("click", rollDice)
 
-function rollDice(){
-	var roll = _.random([lower=1], [upper=6])
-	console.log(roll)
-
-}
 
 function setPieces(){
 	hall.appendChild(playerPiece)
@@ -116,81 +112,144 @@ function setPieces(){
 }
 
 
-function move(){
+function rollDice(){
 	var currentLocation = playerPiece.parentElement
-	// var row = currentLocation.parentElement.rowIndex
-	// var cell = currentLocation.cellIndex
 	var roll = _.random([lower=1], [upper=6])
-	if (roll = 1) {
-			hallOptions = [study]
-			studyOptions = [hall, library]
-			libraryOptions = [study, billardRoom]
-			billardRoomOptions = [library, conservatory]
-			conservatoryOptions = [billardRoom]
-			ballRoomOptions = [kitchen]
-			kitchenOptions = [diningRoom, ballRoom]
-			diningRoomOptions = [lounge, kitchen]
-			loungeOptions = [diningRoom]
-	if (roll = 2){
-			hallOptions = [study, library]
-			studyOptions = [hall, library, billardRoom]
-			libraryOptions = [study, billardRoom, hall, conservatory]
-			billardRoomOptions = [library, conservatory, study]
-			conservatoryOptions = [billardRoom, library, ballRoom]
-			ballRoomOptions = [kitchen, diningRoom, conservatory]
-			kitchenOptions = [diningRoom, ballRoom, lounge]
-			diningRoomOptions = [lounge, kitchen, ballRoom]
-			loungeOptions = [diningRoom, kitchen]
+
+	if (roll === 1) {
+		hallOptions = [study]
+		studyOptions = [hall, library]
+		libraryOptions = [study, billardRoom]
+		billardRoomOptions = [library, conservatory]
+		conservatoryOptions = [billardRoom]
+		ballRoomOptions = [kitchen]
+		kitchenOptions = [diningRoom, ballRoom]
+		diningRoomOptions = [lounge, kitchen]
+		loungeOptions = [diningRoom]
+	}
+
+	else if (roll === 2){
+		hallOptions = [study, library]
+		studyOptions = [hall, library, billardRoom]
+		libraryOptions = [study, billardRoom, hall, conservatory]
+		billardRoomOptions = [library, conservatory, study]
+		conservatoryOptions = [billardRoom, library, ballRoom]
+		ballRoomOptions = [kitchen, diningRoom, conservatory]
+		kitchenOptions = [diningRoom, ballRoom, lounge]
+		diningRoomOptions = [lounge, kitchen, ballRoom]
+		loungeOptions = [diningRoom, kitchen]
+	}
+
+	else if (roll === 3){
+		hallOptions = [study, library, billardRoom, lounge]
+		studyOptions = [hall, library, billardRoom, conservatory]
+		libraryOptions = [study, billardRoom, hall, conservatory, lounge]
+		billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom]
+		conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study]
+		ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom]
+		kitchenOptions = [diningRoom, ballRoom, lounge, conservatory]
+		diningRoomOptions = [lounge, kitchen, ballRoom]
+		loungeOptions = [diningRoom, kitchen, hall, ballRoom]
+	}
+
+	else if (roll === 4){
+		hallOptions = [study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
+		studyOptions = [hall, library, billardRoom, conservatory, lounge]
+		libraryOptions = [study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
+		billardRoomOptions = [lounge, library, conservatory, study, hall, ballRoom, diningRoom, kitchen]
+		conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom]
+		ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, hall]
+		kitchenOptions = [diningRoom, ballRoom, lounge, conservatory, billardRoom]
+		diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, library]
+		loungeOptions = [diningRoom, kitchen, hall, ballRoom, study, billardRoom]
+	}
+
+	else if (roll === 5 ){
+		hallOptions = [kitchen, study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
+		studyOptions = [diningRoom, ballRoom, hall, library, billardRoom, conservatory, lounge]
+		libraryOptions = [kitchen, study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
+		billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom, kitchen, lounge]
+		conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom, lounge]
+		ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, study, hall]
+		kitchenOptions = [diningRoom, ballRoom, lounge, conservatory, billardRoom, library, hall]
+		diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, billardRoom, study, library]
+		loungeOptions = [conservatory, diningRoom, kitchen, hall, ballRoom, study, billardRoom, library]
+	}	
+
+
+	else if (roll === 6 ){
+		hallOptions = [kitchen, study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
+		studyOptions = [kitchen, diningRoom, ballRoom, hall, library, billardRoom, conservatory, lounge]
+		libraryOptions = [kitchen, study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
+		billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom, kitchen, lounge]
+		conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom, lounge]
+		ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, study, hall]
+		kitchenOptions = [study, diningRoom, ballRoom, lounge, conservatory, billardRoom, library, hall]
+		diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, billardRoom, study, library]
+		loungeOptions = [conservatory, diningRoom, kitchen, hall, ballRoom, study, billardRoom, library]
+	}	
+
+
+	if (currentLocation = hall){
+		for (i=0; i<hallOptions.length; i++){
+				hallOptions[i].style.backgroundColor = 'yellow'
+				var target = hallOptions[i]
+				target.addEventListener('click', function(){
+					target.appendChild(playerPiece)
+				})
+			}
 		}
-	if (roll = 3){
-			hallOptions = [study, library, billardRoom, lounge]
-			studyOptions = [hall, library, billardRoom, conservatory]
-			libraryOptions = [study, billardRoom, hall, conservatory, lounge]
-			billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom]
-			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study]
-			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom]
-			kitchenOptions = [diningRoom, ballRoom, lounge, conservatory]
-			diningRoomOptions = [lounge, kitchen, ballRoom]
-			loungeOptions = [diningRoom, kitchen, hall, ballRoom]
+
+	else if (currentLocation = study){
+		for (i=0; i<studyOptions.length; i++){
+				studyOptions[i].style.backgroundColor = 'yellow'
+		}
+	}
+
+		else if (currentLocation = library){
+			for (i=0; i<libraryOptions.length; i++){
+				libraryOptions[i].style.backgroundColor = 'yellow'
+			}
 		}
 
-		if (roll = 4){
-			hallOptions = [study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
-			studyOptions = [hall, library, billardRoom, conservatory, lounge]
-			libraryOptions = [study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
-			billardRoomOptions = [lounge, library, conservatory, study, hall, ballRoom, diningRoom, kitchen]
-			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom]
-			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, hall]
-			kitchenOptions = [diningRoom, ballRoom, lounge, conservatory, billiardRoom]
-			diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, library]
-			loungeOptions = [diningRoom, kitchen, hall, ballRoom, study, billiardRoom]
+		else if (currentLocation = billardRoom){
+			for (i=0; i<billardRoomOptions.length; i++){
+				billardRoomOptions[i].style.backgroundColor = 'yellow'
 		}
+	}
 
-		if (roll = 5 )
-			hallOptions = [kitchen, study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
-			studyOptions = [diningRoom, ballRoom, hall, library, billardRoom, conservatory, lounge]
-			libraryOptions = [kitchen, study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
-			billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom, kitchen, lounge]
-			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom, lounge]
-			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, study, hall]
-			kitchenOptions = [diningRoom, ballRoom, lounge, conservatory, billiardRoom, library, hall]
-			diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, billardRoom, study, library]
-			loungeOptions = [conservatory, diningRoom, kitchen, hall, ballRoom, study, billiardRoom, library]
-		}	
+		else if (currentLocation = conservatory){
+			for (i=0; i<conservatoryOptions.length; i++){
+				conservatoryOptions[i].style.backgroundColor = 'yellow'
+		}
+	}
 
+		else if (currentLocation = ballRoom){
+			for (i=0; i<ballRoomOptions.length; i++){
+				ballRoomOptions[i].style.backgroundColor = 'yellow'
+		}
+	}
 
-		if (roll = 5 )
-			hallOptions = [kitchen, study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
-			studyOptions = [kitchen, diningRoom, ballRoom, hall, library, billardRoom, conservatory, lounge]
-			libraryOptions = [kitchen, study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
-			billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom, kitchen, lounge]
-			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom, lounge]
-			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, study, hall]
-			kitchenOptions = [study, diningRoom, ballRoom, lounge, conservatory, billiardRoom, library, hall]
-			diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, billardRoom, study, library]
-			loungeOptions = [conservatory, diningRoom, kitchen, hall, ballRoom, study, billiardRoom, library]
-		}	
+		else if (currentLocation = kitchen){
+			for (i=0; i<kitchenOptions.length; i++){
+				kitchenOptions[i].style.backgroundColor = 'yellow'
+		}
+	}
+
+		else if (currentLocation = diningRoom){
+			for (i=0; i<diningRoopmOptions.length; i++){
+				diningRoomnOptions[i].style.backgroundColor = 'yellow'
+		}
+	}
+
+	else if (currentLocation = lounge){
+		for (i=0; i<loungeOptions.length; i++){
+				loungeOptions[i].style.backgroundColor = 'yellow'
+		}
+	}
 }
+
+
 
 
 
