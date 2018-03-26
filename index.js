@@ -18,6 +18,7 @@ var computer2Piece = document.getElementById('computer2Piece')
 var board = document.getElementById('board')
 
 //rooms 
+
 var hall = board.rows[0].cells[1]
 var study = board.rows[0].cells[0]
 var library = board.rows[1].cells[0]
@@ -27,7 +28,7 @@ var diningRoom = board.rows[2].cells[3]
 var conservatory = board.rows[3].cells[0]
 var ballRoom = board.rows[3].cells[2]
 var kitchen = board.rows[3].cells[3]
-
+var rooms = [hall, study, library, lounge, billardRoom, diningRoom, conservatory, ballRoom, kitchen]
 
 // deal the cards
 var start = document.getElementById('start')
@@ -115,6 +116,29 @@ function setPieces(){
 }
 
 
+function move(){
+	var currentLocation = playerPiece.parentElement
+	var row = currentLocation.parentElement.rowIndex
+	console.log(roll)
+	var cell = currentLocation.cellIndex
+	var options = []
+	for (i=0; i<rooms.length; i++){
+		if (rooms[i].parentElement.rowIndex == (row + roll) && rooms[i].cellIndex == cell){
+			options.push(rooms[i])
+			}
+		else if (rooms[i].parentElement.rowIndex == (row - roll) && rooms[i].cellIndex == cell){
+			options.push(rooms[i])
+			}
+		else if (rooms[i].parentElement.rowIndex == row && rooms[i].cellIndex == (cell + roll)){
+			options.push(rooms[i])
+			}
+		else if (rooms[i].parentElement.rowIndex == row && rooms[i].cellIndex == (cell - roll)){
+			options.push(rooms[i])
+		}
+	}
+	console.log(options)
+
+}
 
 
 
