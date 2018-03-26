@@ -118,26 +118,78 @@ function setPieces(){
 
 function move(){
 	var currentLocation = playerPiece.parentElement
-	var row = currentLocation.parentElement.rowIndex
-	console.log(roll)
-	var cell = currentLocation.cellIndex
-	var options = []
-	for (i=0; i<rooms.length; i++){
-		if (rooms[i].parentElement.rowIndex == (row + roll) && rooms[i].cellIndex == cell){
-			options.push(rooms[i])
-			}
-		else if (rooms[i].parentElement.rowIndex == (row - roll) && rooms[i].cellIndex == cell){
-			options.push(rooms[i])
-			}
-		else if (rooms[i].parentElement.rowIndex == row && rooms[i].cellIndex == (cell + roll)){
-			options.push(rooms[i])
-			}
-		else if (rooms[i].parentElement.rowIndex == row && rooms[i].cellIndex == (cell - roll)){
-			options.push(rooms[i])
+	// var row = currentLocation.parentElement.rowIndex
+	// var cell = currentLocation.cellIndex
+	var roll = _.random([lower=1], [upper=6])
+	if (roll = 1) {
+			hallOptions = [study]
+			studyOptions = [hall, library]
+			libraryOptions = [study, billardRoom]
+			billardRoomOptions = [library, conservatory]
+			conservatoryOptions = [billardRoom]
+			ballRoomOptions = [kitchen]
+			kitchenOptions = [diningRoom, ballRoom]
+			diningRoomOptions = [lounge, kitchen]
+			loungeOptions = [diningRoom]
+	if (roll = 2){
+			hallOptions = [study, library]
+			studyOptions = [hall, library, billardRoom]
+			libraryOptions = [study, billardRoom, hall, conservatory]
+			billardRoomOptions = [library, conservatory, study]
+			conservatoryOptions = [billardRoom, library, ballRoom]
+			ballRoomOptions = [kitchen, diningRoom, conservatory]
+			kitchenOptions = [diningRoom, ballRoom, lounge]
+			diningRoomOptions = [lounge, kitchen, ballRoom]
+			loungeOptions = [diningRoom, kitchen]
 		}
-	}
-	console.log(options)
+	if (roll = 3){
+			hallOptions = [study, library, billardRoom, lounge]
+			studyOptions = [hall, library, billardRoom, conservatory]
+			libraryOptions = [study, billardRoom, hall, conservatory, lounge]
+			billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom]
+			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study]
+			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom]
+			kitchenOptions = [diningRoom, ballRoom, lounge, conservatory]
+			diningRoomOptions = [lounge, kitchen, ballRoom]
+			loungeOptions = [diningRoom, kitchen, hall, ballRoom]
+		}
 
+		if (roll = 4){
+			hallOptions = [study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
+			studyOptions = [hall, library, billardRoom, conservatory, lounge]
+			libraryOptions = [study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
+			billardRoomOptions = [lounge, library, conservatory, study, hall, ballRoom, diningRoom, kitchen]
+			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom]
+			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, hall]
+			kitchenOptions = [diningRoom, ballRoom, lounge, conservatory, billiardRoom]
+			diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, library]
+			loungeOptions = [diningRoom, kitchen, hall, ballRoom, study, billiardRoom]
+		}
+
+		if (roll = 5 )
+			hallOptions = [kitchen, study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
+			studyOptions = [diningRoom, ballRoom, hall, library, billardRoom, conservatory, lounge]
+			libraryOptions = [kitchen, study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
+			billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom, kitchen, lounge]
+			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom, lounge]
+			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, study, hall]
+			kitchenOptions = [diningRoom, ballRoom, lounge, conservatory, billiardRoom, library, hall]
+			diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, billardRoom, study, library]
+			loungeOptions = [conservatory, diningRoom, kitchen, hall, ballRoom, study, billiardRoom, library]
+		}	
+
+
+		if (roll = 5 )
+			hallOptions = [kitchen, study, library, billardRoom, lounge, conservatory, ballRoom, diningRoom]
+			studyOptions = [kitchen, diningRoom, ballRoom, hall, library, billardRoom, conservatory, lounge]
+			libraryOptions = [kitchen, study, billardRoom, hall, conservatory, lounge, diningRoom, ballRoom]
+			billardRoomOptions = [library, conservatory, study, hall, ballRoom, diningRoom, kitchen, lounge]
+			conservatoryOptions = [billardRoom, library, ballRoom, kitchen, study, hall, diningRoom, lounge]
+			ballRoomOptions = [kitchen, diningRoom, conservatory, lounge, billardRoom, library, study, hall]
+			kitchenOptions = [study, diningRoom, ballRoom, lounge, conservatory, billiardRoom, library, hall]
+			diningRoomOptions = [lounge, kitchen, ballRoom, hall, conservatory, billardRoom, study, library]
+			loungeOptions = [conservatory, diningRoom, kitchen, hall, ballRoom, study, billiardRoom, library]
+		}	
 }
 
 
