@@ -3,8 +3,8 @@
 
 
 var roomArray = ['Hall', 'Study', 'Library', 'Billard Room', 'Conservatory', 'Ballroom', 'Kitchen', 'Dining Room', 'Lounge']
-var charArray = ['Miss Scarlet', 'Colonel Mustard', 'Mrs. White', 'Mrs. Peacock', 'Professor Plum']
-var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wrench', 'JavaScript']
+var charArray = ['Miss Scarlet', 'Mr. Green', 'Colonel Mustard', 'Mrs. White', 'Mrs. Peacock', 'Professor Plum']
+var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wrench']
 var playerCards = []
 var computer1Cards = []
 var computer2Cards = []
@@ -16,7 +16,7 @@ var computer1Piece = document.getElementById('computer1Piece')
 var computer2Piece = document.getElementById('computer2Piece')
 
 var board = document.getElementById('board')
-var diceResult = dice_result.getElementById
+
 
 //rooms 
 
@@ -82,6 +82,7 @@ for (i = 0; i<computer1Cards.length; i++){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.className = 'value'
+		// value.style.display = 'none'
 		value.innerHTML = computer1Cards[i]
 		card.appendChild(value);
 		document.getElementById("computer1cardContainer").appendChild(card);
@@ -93,6 +94,7 @@ for (i = 0; i<computer2Cards.length; i++){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.className = 'value'
+		// value.style.display = 'none'
 		value.innerHTML = computer2Cards[i]
 		card.appendChild(value);
 		document.getElementById("computer2cardContainer").appendChild(card);
@@ -117,9 +119,8 @@ function rollDice(){
 	var currentLocation = playerPiece.parentElement
 	//roll the die
 	var roll = _.random([lower=1], [upper=6])
-
+	document.getElementById('dice_result').innerHTML = roll
 	//movement options based on roll and starting location
-
 
 	if (roll === 1) {
 		hallOptions = [study]
@@ -212,27 +213,81 @@ function rollDice(){
 		for (i=0; i<roomMoves.length; i++){
 				roomMoves[i].style.backgroundColor = 'yellow'
 				roomMoves[i].addEventListener('click', move)
-				roomMoves[i].addEventListener('click', endMove)
+				roomMoves[i].addEventListener('click', guessSetUp)
 			}
 		}
+
+
+
 //move the piece
 
 function move(e){
 	e.target.appendChild(playerPiece)
-	}
+}
 	
 //after movement is complete
 
-function endMove(){
+function guessSetUp(){
 	for (i=0; i<rooms.length; i++){
 		//stops movement
 		rooms[i].removeEventListener('click', move)
 		//change color back
 		rooms[i].style.backgroundColor = 'white'
 	}
-
+	var currentLocationName = playerPiece.parentElement.id
+	document.getElementById('roomGuess').innerHTML = currentLocationName
 
 }
+
+
+document.getElementById('button').addEventListener('click', guess)
+
+
+function guess(){
+	document.getElementById('weaponGuess')
+	var weaponGuessValue = weaponGuess.value
+	document.getElementById('charGuess')
+	var charGuessValue = charGuess.value
+	document.getElementById('roomGuess')
+	var roomGuessValue = roomGuess.value
+	for (i=0; i<computer1Cards.length; i++){
+		console.log(weaponGuessValue)
+		if (weaponGuessValue === computer1Cards[i]){
+		console.log('match')
+	}
+		
+}
+}
+
+	// else if (guessStorage === []){
+	// 	for (i=0; i<computer2Cards.length; i++){
+
+	// 		if (weaponGuessValue === computer2Cards[i]){
+	// 			guessStorage.push(weaponGuessValue)
+	// 		}
+	// 		if (roomGuessValue === computer2Cards[i]){
+	// 			guessStorage.push(roomGuessValue)
+	// 		}
+
+	// 		if 	(charGuessValue === computer2Cards[i]){
+	// 			guessStorage.push(charGuessValue)
+	// 		}
+	// 	}
+		
+	// var guessStorageShuffle = _.shuffle(guessStorage)
+		
+	// if (guessStorage != []){
+	// 		console.log(guessStorageShuffle[0])
+	// 		}
+
+	// 	}
+
+
+	
+
+
+
+
 
 
 
