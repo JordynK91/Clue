@@ -113,8 +113,13 @@ function setPieces(){
 
 
 function rollDice(){
+	//where is the piece currently
 	var currentLocation = playerPiece.parentElement
+	//roll the die
 	var roll = _.random([lower=1], [upper=6])
+
+	//movement options based on roll and starting location
+
 
 	if (roll === 1) {
 		hallOptions = [study]
@@ -189,92 +194,45 @@ function rollDice(){
 		loungeOptions = [conservatory, diningRoom, kitchen, hall, ballRoom, study, billardRoom, library]
 	}	
 
+	//stores room and it's movement options
+	var roomMoveStorage = new Map()
+		roomMoveStorage.set(hall, hallOptions)
+		roomMoveStorage.set(study, studyOptions)
+		roomMoveStorage.set(library, libraryOptions)
+		roomMoveStorage.set(billardRoom, billardRoomOptions)
+		roomMoveStorage.set(conservatory, conservatoryOptions)
+		roomMoveStorage.set(ballRoom, ballRoomOptions)
+		roomMoveStorage.set(kitchen, kitchenOptions)
+		roomMoveStorage.set(diningRoom, diningRoomOptions)
+		roomMoveStorage.set(lounge, loungeOptions)
 
-	if (currentLocation = hall){
-		for (i=0; i<hallOptions.length; i++){
-				hallOptions[i].style.backgroundColor = 'yellow'
-				hallOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-				})
+	//finds current location in room storage
+		var roomMoves = roomMoveStorage.get(currentLocation)
+		
+		for (i=0; i<roomMoves.length; i++){
+				roomMoves[i].style.backgroundColor = 'yellow'
+				roomMoves[i].addEventListener('click', move)
+				roomMoves[i].addEventListener('click', endMove)
 			}
 		}
+//move the piece
 
-	else if (currentLocation = study){
-		for (i=0; i<studyOptions.length; i++){
-				studyOptions[i].style.backgroundColor = 'yellow'
-				studyOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-				})
-			}
-		}
+function move(e){
+	e.target.appendChild(playerPiece)
+	}
+	
+//after movement is complete
 
-		else if (currentLocation = library){
-			for (i=0; i<libraryOptions.length; i++){
-				libraryOptions[i].style.backgroundColor = 'yellow'
-				libaryOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-				})
-			}
-		}
-
-		else if (currentLocation = billardRoom){
-			for (i=0; i<billardRoomOptions.length; i++){
-				billardRoomOptions[i].style.backgroundColor = 'yellow'
-				billardRoomOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-				})
-		}
+function endMove(){
+	for (i=0; i<rooms.length; i++){
+		//stops movement
+		rooms[i].removeEventListener('click', move)
+		//change color back
+		rooms[i].style.backgroundColor = 'white'
 	}
 
-		else if (currentLocation = conservatory){
-			for (i=0; i<conservatoryOptions.length; i++){
-				conservatoryOptions[i].style.backgroundColor = 'yellow'
-				conservatoryptions[i].style.backgroundColor = 'yellow'
-				conservatoryOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-			})
-		}
-	}
 
-		else if (currentLocation = ballRoom){
-			for (i=0; i<ballRoomOptions.length; i++){
-				ballRoomOptions[i].style.backgroundColor = 'yellow'
-				ballRoomOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-			})
-		}
-	}
-
-		else if (currentLocation = kitchen){
-			for (i=0; i<kitchenOptions.length; i++){
-				kitchenOptions[i].style.backgroundColor = 'yellow'
-				kitchenOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-			})
-		}
-	}
-
-		else if (currentLocation = diningRoom){
-			for (i=0; i<diningRoopmOptions.length; i++){
-				diningRoomnOptions[i].style.backgroundColor = 'yellow'
-				diningRoomOptions[i].addEventListener('click', function(e){
-					e.target.appendChild(playerPiece)
-			})
-		}
-	}
-
-	else if (currentLocation = lounge){
-		for (i=0; i<loungeOptions.length; i++){
-				loungeOptions[i].style.backgroundColor = 'yellow'
-				loungeOptions[i].addEventListener('click', function(e){
-				e.target.appendChild(playerPiece)
-			})
-
-		}
-	}
 }
-
-
 
 
 
