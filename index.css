@@ -17,6 +17,12 @@
 	background-color: red;
 }
 
+#endTurn {width: 100px;
+	height: 100px;
+	background-color: green;
+
+}
+
 #cardContainer{
 	color: red;
 }
