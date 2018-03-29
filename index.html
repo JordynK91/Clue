@@ -18,8 +18,48 @@
   <div id = 'dice_result'>
   </div>
 
-<br>
+<div id = guessContainer>
 
+<form action="" id="guessForm">
+
+It was
+<select id = charGuess>
+  <option value="Miss Scarlet">Miss Scarlet</option>
+  <option value="Mr. Green">Mr. Green</option>
+  <option value="Colonel Mustard">Colonel Mustard</option>
+  <option value="Mrs. White">Mrs. White</option>
+  <option value="Mrs. Peacock">Mrs. Peacock</option>
+  <option value="Professor Plum">Professor Plum</option>
+  </select>
+
+with the
+<select id = weaponGuess>
+  <option value="Knife">Knife </option>
+  <option value="Candlestick">Candlestick</option>
+  <option value="Lead Pipe">Lead Pipe</option>
+  <option value="Revolver">Revolver</option>
+  <option value="Rope">Rope</option>
+  <option value="Wrench">Wrench</option>
+  </select>
+
+in the 
+  <select>
+  <option id = roomGuess></option>
+  </select>
+
+  <button type = 'button' id = 'button'>Submit</button>
+  </form>
+
+<div id = computerGuess>
+</div>
+
+<div id = messages>
+</div>
+
+</div>
+
+<br>
+<div class = 'container'>
 <table id = board style="width:80%">
   <tr>
   	<td id = 'Study'> Study </td>
@@ -46,6 +86,7 @@
   </tr>
 
 </table>
+</div>
 
   <div class = 'piece' id = 'playerPiece'>Player</div>
   <div class = 'piece' id = 'computer1Piece'>Computer 1</div>
@@ -62,8 +103,11 @@
 	</div>
 
 
-<script type="text/javascript" src ="index.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
+<script type="text/javascript" src ="index.js"></script>
+
 
 </body>
 </html>
