@@ -63,5 +63,16 @@ table, th, td {
 td {width: 100px;
 	height: 100px;}
 
+#accuseForm {
+	display: none;
+}
+
+.check{
+	font-size: 100px;
+	display: none;
+}
+
+
+
 
 

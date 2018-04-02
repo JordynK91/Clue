@@ -1,8 +1,17 @@
 
 //sets up turns
 var turn = 'player';
-var computerMoves ;
 
+//sets up computer movement
+var computerMoves 
+
+//sets up computer guesses
+var weaponGuessValue;
+var roomGuessValue; ;
+var guessStorage = []
+var computer1Storage = []
+var computer2Storage = []
+computerAccuse()
 
 //sets up game cards
 var roomArray = ['Hall', 'Study', 'Library', 'Billard Room', 'Conservatory', 'Ballroom', 'Kitchen', 'Dining Room', 'Lounge']
@@ -11,6 +20,17 @@ var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wre
 var playerCards = []
 var computer1Cards = []
 var computer2Cards = []
+var roomEnvelope = _.sample(roomArray)
+var charEnvelope = _.sample(charArray)
+var weaponEnvelope = _.sample(weaponArray)
+
+//computer1Storage counts towards computer victory. when computerstorage hits 21 the computer wins
+computer1Storage.push(roomEnvelope)
+computer2Storage.push(roomEnvelope)
+computer1Storage.push(charEnvelope)
+computer2Storage.push(charEnvelope)
+computer1Storage.push(weaponEnvelope)
+computer2Storage.push(weaponEnvelope)
 
 //dice and player pieces 
 var dice = document.getElementById('dice')
@@ -18,11 +38,10 @@ var playerPiece = document.getElementById('playerPiece')
 var computer1Piece = document.getElementById('computer1Piece')
 var computer2Piece = document.getElementById('computer2Piece')
 
+//board
 var board = document.getElementById('board')
-var guessStorage = []
 
 //rooms 
-
 var hall = board.rows[0].cells[1]
 var study = board.rows[0].cells[0]
 var library = board.rows[1].cells[0]
@@ -42,15 +61,13 @@ start.addEventListener('click', setPieces)
 
 //select room, charecter, weapon for envelope 
 function dealing(){
-	var roomEnvelope = roomArray[Math.floor(Math.random() * roomArray.length)];
-	var charEnvelope = charArray[Math.floor(Math.random() * charArray.length)];
-	var weaponEnvelope = weaponArray[Math.floor(Math.random() * charArray.length)];
-
 	// remove enevelope cards from the deck
 	var roomEnvelopeIndex = roomArray.indexOf(roomEnvelope)
 		roomArray.splice(roomEnvelopeIndex, 1)
+
 	var charEnvelopeIndex = charArray.indexOf(charEnvelope)
 		charArray.splice(charEnvelopeIndex, 1)
+
 	var weaponEnvelopeIndex = weaponArray.indexOf(weaponEnvelope)
 		weaponArray.splice(weaponEnvelopeIndex, 1)
 
@@ -62,9 +79,11 @@ function dealing(){
 		}
 		else if (i < 12){
 			computer1Cards.push(cardArray[i])
+			computer1Storage.push(cardArray[i])
 		}
-		else {
+		else if (i >= 12) {
 			computer2Cards.push(cardArray[i])
+			computer2Storage.push(cardArray[i])
 		}
 	}	
 
@@ -79,8 +98,6 @@ function dealing(){
 		document.getElementById("cardContainer").appendChild(card);
 	}
 
-		console.log(computer1Cards)
-		console.log(computer2Cards)
 //computer1's cards are displayed 
 	for (i = 0; i<computer1Cards.length; i++){
 		var card = document.createElement('div')
@@ -109,6 +126,8 @@ function dealing(){
 
 }
 
+//removes card display when altered during turns
+
 function clearCards(){
 	for (i=0; i<computer1Cards.length; i++){
 		document.getElementById(computer1Cards[i]+'value').style.display = 'none'
@@ -123,43 +142,55 @@ function clearCards(){
 
 
 //when called switches whose turn it is. 
+
+//switch from player to computer1
 function turnHandlerPlayer(){
 	    turn = 'computer1'
 	    document.getElementById('messages').innerHTML = "it is computer1's turn"
+	    guessStorage.splice(0,guessStorage.length)
 	    window.setTimeout(clearCards, 3000)
 	 	window.setTimeout(rollDice, 3000)
+	 	console.log(computer1Storage)
+	 	console.log(computer2Storage)
 
 }
 
-
+//switch from computer1 to computer2
 function turnHandlerComputer1(){
 		turn = 'computer2'
 		document.getElementById('messages').innerHTML = "it is computer2's turn"
+		guessStorage.splice(0,guessStorage.length)
 		window.setTimeout(clearCards, 3000)
-		window.setTimeout(rollDice, 3000)
+		window.setTimeout(rollDice, 3000)	
+		console.log(computer1Storage)
+	 	console.log(computer2Storage)
 }
-	
+
+//switch from computer2 to player
 function turnHandlerComputer2(){
 		turn = 'player'
+		guessStorage.splice(0,guessStorage.length)
+		console.log(computer1Storage)
+	 	console.log(computer2Storage)
 		window.setTimeout(clearCards, 3000)
+		document.getElementById('computerGuess').innerHTML = ''
 		document.getElementById('messages').innerHTML = "it is your turn. roll the dice and take your turn"
-
 }
 
+//player clicks dice to start
 dice.addEventListener("click", rollDice)
 
+//places pieces upon game start
 function setPieces(){
 	hall.appendChild(playerPiece)
 	conservatory.appendChild(computer1Piece)
 	diningRoom.appendChild(computer2Piece)
 }
 
-
 function rollDice(){
 	//where is the piece currently
 	if (turn === 'player'){
 		 currentLocation = playerPiece.parentElement
-		 console.log(currentLocation)
 	}
 	else if (turn === 'computer1'){
 		 currentLocation = computer1Piece.parentElement
@@ -170,6 +201,7 @@ function rollDice(){
 	//roll the die
 	var roll = _.random([lower=1], [upper=6])
 	document.getElementById('dice_result').innerHTML = roll
+
 	//movement options based on roll and starting location
 	
 	if (roll === 1) {
@@ -267,26 +299,31 @@ function rollDice(){
 		}
 		else if (turn === 'computer1' || turn === 'computer2') {
 				computerMoves = _.shuffle(roomMoves)
-				window.setTimeout(moveComputer, 2000)
+				window.setTimeout(moveComputer, 3000)
 		}
 	}
 }
 
-//move the piece
+//move the player piece
 
 function movePlayer(e){
 	e.target.appendChild(playerPiece)
 }
 
+//moves computer piece and sets ups guess values for weapon and charecter
 function moveComputer(){
 	if (turn === 'computer1'){
 		computerMoves[0].appendChild(computer1Piece)
-		window.setTimeout(guess, 2000)
+		window.setTimeout(guessComputer1, 3000)
+		charGuessValue =  _.sample(charArray)
+		weaponGuessValue = _.sample(weaponArray)
 	}
 
 	else if (turn === 'computer2'){
 		computerMoves[0].appendChild(computer2Piece)
-		window.setTimeout(guess, 2000)
+		window.setTimeout(guessComputer2, 3000)
+		charGuessValue =  _.sample(charArray)
+		weaponGuessValue = _.sample(weaponArray)
 	}
 }
 	
@@ -296,228 +333,311 @@ function guessSetUp(){
 	for (i=0; i<rooms.length; i++){
 		//stops movement
 		rooms[i].removeEventListener('click', movePlayer)
+		rooms[i].removeEventListener('click', guessSetUp)
 		//change color back
 		rooms[i].style.backgroundColor = 'white'
 	}
 	var currentLocationName = playerPiece.parentElement.id
 	document.getElementById('roomGuess').innerHTML = currentLocationName
+	document.getElementById('messages').innerHTML = "submit a guess"	
+}	
 
-}
+//player submits guess
+document.getElementById('button').addEventListener('click', guessPlayer)
 
+//called once player guess is submitted
 
-document.getElementById('button').addEventListener('click', guess)
+function guessPlayer(){
+	document.getElementById('weaponGuess')
+	var weaponGuessValue = weaponGuess.value
+	document.getElementById('charGuess')
+	var charGuessValue = charGuess.value
+	document.getElementById('roomGuess')
+	var roomGuessValue = roomGuess.value
 
-function guess(){
-	guessStorage = []
-
-	if (turn === 'player'){
-		document.getElementById('messages').innerHTML = "submit a guess"	
-		document.getElementById('weaponGuess')
-		var weaponGuessValue = weaponGuess.value
-		document.getElementById('charGuess')
-		var charGuessValue = charGuess.value
-		document.getElementById('roomGuess')
-		var roomGuessValue = roomGuess.value
-
-		//player guess is compared with computer 1's cards
-		for (i=0; i < computer1Cards.length; i++){
-			if (weaponGuessValue === computer1Cards[i]){
-				guessStorage.push(computer1Cards[i])
-			}	
-			if (charGuessValue === computer1Cards[i]){
-				guessStorage.push(computer1Cards[i])
-			}
-			if (roomGuessValue === computer1Cards[i]){
-				guessStorage.push(computer1Cards[i])
-			}
-		}
-		//computer 1 reveals a random card from their hand that matches
-  		randomCard = _.shuffle(guessStorage)
-  		
-  		if (randomCard.length > 0){
-  			document.getElementById('messages').innerHTML = "computer1 has a card you asked for"	
-  			document.getElementById(randomCard[0]+'value').style.display = 'inline'
-  		//next turn
-  			window.setTimeout(turnHandlerPlayer, 2000)
-  		}
-  		//if computer1 doesn't have a match to player's guess it goes to computer 2
-  		else {
- 			document.getElementById('messages').innerHTML = "computer1 does not have a match"
-  			window.setTimeout(guess2, 2000)
-  		}
-	}
-	
-	//computer1 compares their guess with computer2's hand
-	else if (turn === 'computer1'){
-		charGuessValue = _.shuffle(charArray)[0]
-		weaponGuessValue = _.shuffle(weaponArray)[0]
-			//computer1 guess randomly 
-		// charGuessValue = charArray[0];
-		// weaponGuessValue = weaponArray[0];
-		roomGuessValue =  computer1Piece.parentElement.id
-		document.getElementById('computerGuess').innerHTML = 'Computer1 says it was ' + 
-		charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue
-
-		for (i=0; i<computer2Cards.length; i++){
-			if (weaponGuessValue === computer2Cards[i]){
-				guessStorage.push(computer2Cards[i])
-			}	
-			if (charGuessValue === computer2Cards[i]){
-				guessStorage.push(computer2Cards[i])
-			}
-			if (roomGuessValue === computer2Cards[i]){
-				guessStorage.push(computer2Cards[i])
-			}
-		}
-		//computer2 picks a matching card from their hand
-		randomCard = _.shuffle(guessStorage)
-		if (randomCard.length > 0){
-  			window.setTimeout(turnHandlerComputer1, 2000)
-		}
-
-  		//if computer2 does not have a match player shows a matching card. next turn begins when player hits card to show computer1
-  		else 	{
-  				console.log(weaponGuessValue)
-  				console.log(roomGuessValue)
-  				console.log(charGuessValue)
-  			for (i=0; i<playerCards.length; i++){
-  				if (playerCards[i] === weaponGuessValue){
-  					document.getElementById('messages').innerHTML = 'you have a match. click it now to reveal to Computer1'
-  					document.getElementById(weaponGuessValue + 'value').style.backgroundColor = 'green'
-  					document.getElementById(weaponGuessValue + 'value').addEventListener('click', turnHandlerComputer1)
-  				}
-
-  				else if (playerCards[i] === charGuessValue){
-  					document.getElementById('messages').innerHTML = 'you have a match. click it now to reveal to Computer1'
-  					document.getElementById(charGuessValue + 'value').style.backgroundColor = 'green'
-  					document.getElementById(charGuessValue + 'value').addEventListener('click', turnHandlerComputer1)
-  				}
- 
-  				else if (playerCards[i] === roomGuessValue){
-  					document.getElementById('messages').innerHTML = 'you have a match. click it now to reveal to Computer1'
-  					document.getElementById(roomGuessValue + 'value').style.backgroundColor = 'green'
-  					document.getElementById(roomGuessValue + 'value').addEventListener('click', turnHandlerComputer1)
-
-  				}
-  		// //if player also does not have a match it goes to next turn
-  		// 		else {
-  		// 			document.getElementById('messages').innerHTML = ' you do not have a match. computer1 turn is now over'
-  		// 			window.setTimeout(turnHandlerComputer1, 2000)
-  				// }
-  			}
-  		}
-	}
-	//if it's computer2's turn asks player for a match
-	else if (turn === 'computer2'){
-		charGuessValue = _.shuffle(charArray)[0]
-		weaponGuessValue = _.shuffle(weaponArray)[0]
-		console.log(charGuessValue + "????????????")
-		// charGuessValue = charArray[0];
-		// weaponGuessValue = weaponArray[0];
-		roomGuessValue = computer2Piece.parentElement.id
-		document.getElementById('computerGuess').innerHTML = 'Computer2 says it was ' + 
-		charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue
-
-  		for (i=0; i<playerCards.length; i++){
-  				console.log('NUMBER')
-  				if (playerCards[i] === weaponGuessValue){
-  					console.log(charGuessValue + '333333333333')
-  					document.getElementById('messages').innerHTML = 'you have a match. click it now to reveal to Computer2'
-  					console.log('matchWeapon')
-  					document.getElementById(weaponGuessValue + 'value').style.backgroundColor = 'green'
-  					console.log(weaponGuessValue)
-  					document.getElementById(playerCards[i] + 'value').addEventListener('click', turnHandlerComputer2)
-  				}
-
-  				else if (playerCards[i] === charGuessValue){
-  					console.log(charGuessValue + "44444444444")
-  					document.getElementById('messages').innerHTML = 'you have a match. click it now to reveal to Computer2'
-  					console.log('matchChar')
-  					document.getElementById(playerCards[i] + 'value').style.backgroundColor = 'green'
-  					console.log(charGuessValue)
-  					document.getElementById(playerCards[i] + 'value').addEventListener('click', turnHandlerComputer2)
-  				}
- 
-  				else if (playerCards[i] === roomGuessValue){
-  					document.getElementById('messages').innerHTML = 'you have a match. click it now to reveal to Computer2'
-  					console.log('matchRoom')
-  					document.getElementById(playerCards[i] + 'value').style.backgroundColor = 'green'
-  					console.log(roomGuessValue)
-  					document.getElementById(playerCards[i] + 'value').addEventListener('click', turnHandlerComputer2)
-  				}
-  				
-  				// else {
-  				// 	document.getElementById('messages').innerHTML = 'you do not match with computer2. computer1 will now see if it has a match'
-  				// 	window.setTimeout(guess2, 4000)
-			//}
+	//player guess is compared with computer 1's cards
+	for (i=0; i < computer1Cards.length; i++){
+		if (weaponGuessValue === computer1Cards[i]){
+			guessStorage.push(computer1Cards[i])
 		}	
+		if (charGuessValue === computer1Cards[i]){
+			guessStorage.push(computer1Cards[i])
+		}
+		if (roomGuessValue === computer1Cards[i]){
+			guessStorage.push(computer1Cards[i])
+		}
+	}
+	//computer 1 reveals a random card from their hand that matches
+  	randomCard = _.shuffle(guessStorage)
+  		
+  	if (randomCard.length > 0){
+  		document.getElementById('messages').innerHTML = "computer1 has a card you asked for"	
+  		document.getElementById(randomCard[0]+'value').style.display = 'inline'
+  		//next turn
+  		window.setTimeout(turnHandlerPlayer, 3000)
+  	}
+  		
+  		//if computer1 doesn't have a match to player's guess it goes to computer 2
+  	else {
+ 		document.getElementById('messages').innerHTML = "computer1 does not have a match"
+  		window.setTimeout(playerGuess2, 3000)
+  	}
+}
+	
+function playerGuess2(){
+	
+	document.getElementById('weaponGuess')
+	weaponGuessValue = weaponGuess.value
+	document.getElementById('charGuess')
+	charGuessValue = charGuess.value
+	document.getElementById('roomGuess')
+	roomGuessValue = roomGuess.value
+
+// player asks computer2 for a match
+ 	for (i=0; i<computer2Cards.length; i++){
+		if (weaponGuessValue === computer2Cards[i]){
+			guessStorage.push(computer2Cards[i])
+		}
+		if (charGuessValue === computer2Cards[i]){
+			guessStorage.push(computer2Cards[i])
+		}
+		if (roomGuessValue === computer2Cards[i]){
+			guessStorage.push(computer2Cards[i])
+		}
+	}
+ 
+  	randomCard = _.shuffle(guessStorage)
+  		
+  	if (randomCard.length > 0) {
+  		document.getElementById('messages').innerHTML = "computer2 has a card you asked for"
+  		document.getElementById(randomCard[0]+'value').style.display= 'inline'
+  		window.setTimeout(turnHandlerPlayer, 4000)
+  	}
+
+  	else {
+  		document.getElementById('messages').innerHTML = 'no matches with computer1 or computer2'
+  		window.setTimeout(turnHandlerPlayer, 4000)
+  	}
+}
+
+//computer1 compares their guess with computer2's hand
+function guessComputer1() {
+	roomGuessValue = computer1Piece.parentElement.id		
+	document.getElementById('computerGuess').innerHTML = 'Computer1 says it was ' + 
+	charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue
+
+	for (i=0; i<computer2Cards.length; i++){
+		if (weaponGuessValue === computer2Cards[i]){
+			guessStorage.push(computer2Cards[i])
+		}	
+		else if (charGuessValue === computer2Cards[i]){
+				guessStorage.push(computer2Cards[i])
+		}
+		else if (roomGuessValue === computer2Cards[i]){
+				guessStorage.push(computer2Cards[i])
+		}
+	}
+	//computer2 picks a matching card from their hand. if there is a match it goes to the next turn
+	var randomCard = _.shuffle(guessStorage)
+	
+	if (randomCard.length > 0){
+		if (computer1Storage.indexOf(randomCard[0]) === -1){
+			computer1Storage.push(randomCard[0])
+		}
+  		window.setTimeout(turnHandlerComputer1, 4000)
+	}
+
+  		//if computer2 does not have a match computer 1 checks with the player
+
+  	else if (randomCard.length === 0) {
+  			guess2Computer1()
+  	}
+  }
+
+
+  function guess2Computer1(){
+  //computer1 compares their cards with player
+  //if there is a match that card is highlighted. player selects card to show computer
+
+		if (playerCards.indexOf(weaponGuessValue) >= 0){
+			document.getElementById(weaponGuessValue + 'value').style.backgroundColor = 'green'
+			document.getElementById(weaponGuessValue + 'value').addEventListener('click', function(){
+				if (computer1Storage.indexOf(weaponGuessValue) === -1){
+					computer1Storage.push(weaponGuessValue)
+				}
+			})
+			document.getElementById(weaponGuessValue + 'value').addEventListener('click', turnHandlerComputer1)
+		}
+
+		if (playerCards.indexOf(charGuessValue) >= 0){
+			document.getElementById(charGuessValue + 'value').style.backgroundColor = 'green'
+			document.getElementById(charGuessValue + 'value').addEventListener('click', function(){
+				if (computer1Storage.indexOf(charGuessValue) === -1){
+					computer1Storage.push(charGuessValue)
+				}
+			})
+			document.getElementById(charGuessValue + 'value').addEventListener('click', turnHandlerComputer1)
+		}
+
+		if (playerCards.indexOf(roomGuessValue) >= 0){
+			document.getElementById(roomGuessValue + 'value').style.backgroundColor = 'green'
+			document.getElementById(charGuessValue + 'value').addEventListener('click', function(){
+				if (computer1Storage.indexOf(roomGuessValue) === -1){
+					computer1Storage.push(roomGuessValue)
+				}
+			})
+			document.getElementById(roomGuessValue + 'value').addEventListener('click', turnHandlerComputer1)
+		}
+
+		if (playerCards.indexOf(weaponGuessValue) === (-1) && playerCards.indexOf(charGuessValue) === (-1) && 
+			playerCards.indexOf(roomGuessValue) === (-1) && computer1Cards.indexOf(weaponGuessValue) === (-1) && computer1Cards.indexOf(charGuessvalue) === (-1)
+		    && computer1Cards.indexOf(roomGuessValue) === (-1)){
+			alert('Computer 1 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope + ' in the ' + roomEnvelope + '. Computer 1 Wins')
+  			location.reload()
+  		}
+  		if (playerCards.indexOf(weaponGuessValue) === (-1) && playerCards.indexOf(charGuessValue) === (-1) && 
+			playerCards.indexOf(roomGuessValue) === (-1)){
+			document.getElementById('messages').innerHTML = "you do not match with computer1. computer1's turn is over"
+  			window.setTimeout(turnHandlerComputer1, 4000)
+  		}
+}
+
+
+//if it's computer2's turn asks player for a match
+
+function guessComputer2(){
+
+	roomGuessValue = computer2Piece.parentElement.id
+	document.getElementById('computerGuess').innerHTML = 'Computer2 says it was ' + 
+	charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue + '.  If you have a match please select it now'
+
+	if (playerCards.indexOf(weaponGuessValue) >= 0){
+		document.getElementById(weaponGuessValue + 'value').style.backgroundColor = 'green'
+		document.getElementById(weaponGuessValue + 'value').addEventListener('click', function(){
+				if (computer2Storage.indexOf(weaponGuessValue) === -1){
+					computer2Storage.push(weaponGuessValue)
+				}
+			})
+		document.getElementById(weaponGuessValue + 'value').addEventListener('click', turnHandlerComputer2)
+		}
+
+	if (playerCards.indexOf(charGuessValue) >= 0){
+		document.getElementById(charGuessValue + 'value').style.backgroundColor = 'green'
+		document.getElementById(charGuessValue + 'value').addEventListener('click', function(){
+				if (computer2Storage.indexOf(charGuessValue) === -1){
+					computer2Storage.push(charGuessValue)
+				}
+			})
+		document.getElementById(charGuessValue + 'value').addEventListener('click', turnHandlerComputer2)
+		}
+
+	if (playerCards.indexOf(roomGuessValue) >= 0){
+		document.getElementById(roomGuessValue + 'value').style.backgroundColor = 'green'
+		document.getElementById(roomGuessValue + 'value').addEventListener('click', function(){
+				if (computer2Storage.indexOf(roomGuessValue) === -1){
+					computer2Storage.push(roomGuessValue)
+				}
+			})
+		document.getElementById(roomGuessValue + 'value').addEventListener('click', turnHandlerComputer2)
+		}
+
+	if (playerCards.indexOf(weaponGuessValue) === (-1) && playerCards.indexOf(charGuessValue) === (-1) && 
+			playerCards.indexOf(roomGuessValue) === (-1)){
+			document.getElementById('messages').innerHTML = 'you do not match with computer2. computer1 will now see if it has a match'
+  			window.setTimeout(guess2Computer2, 4000)
 	}
 }
 
-function guess2(){
-//if computer1 doesn't have a match for player's guess, player asks computer2
-	if (turn === 'player'){
- 		document.getElementById('weaponGuess')
-		 weaponGuessValue = weaponGuess.value
-		document.getElementById('charGuess')
-		 charGuessValue = charGuess.value
-		document.getElementById('roomGuess')
-		 roomGuessValue = roomGuess.value
-	
-		for (i=0; i<computer2Cards.length; i++){
-			if (weaponGuessValue === computer2Cards[i]){
-				guessStorage.push(computer2Cards[i])
-			}
-			if (charGuessValue === computer2Cards[i]){
-				guessStorage.push(computer2Cards[i])
-			}
-			if (roomGuessValue === computer2Cards[i]){
-				guessStorage.push(computer2Cards[i])
-			}
-		}
-  		
-  		randomCard = _.shuffle(guessStorage)
-  		
-  		if (randomCard.length > 0) {
-  			document.getElementById('messages').innerHTML = "computer2 has a card you asked for"
-  			document.getElementById(randomCard[0]+'value').style.display= 'inline'
-  			window.setTimeout(turnHandlerPlayer, 2000)
-  		}
 
-  		else {
-  			document.getElementById('messages').innerHTML = 'no matches with computer1 or computer2'
-  			window.setTimeout(turnHandlerPlayer, 2000)
-  		}
+function guess2Computer2(){
+	for (i=0; i<computer1Cards.length; i++){
+		if (weaponGuessValue === computer1Cards[i]){
+			guessStorage.push(computer1Cards[i])
+		}
+
+		if (charGuessValue === computer1Cards[i]){
+			guessStorage.push(computer1Cards[i])
+		}
+		if (roomGuessValue === computer1Cards[i]){
+			guessStorage.push(computer1Cards[i])
+		}
+	}
+	
+
+	randomCard = _.shuffle(guessStorage)
+
+	if (randomCard.length > 0){
+		document.getElementById('messages').innerHTML = "computer1 has a card computer2 asked for"
+		if (computer1Storage.indexOf(randomCard[0]) === -1){
+			computer1Storage.push(randomCard[0])
+		}
+  		window.setTimeout(turnHandlerComputer2, 4000)
+  	}
   	
+  	//if the computer finds no matches (including with own hand) it wins
+  	else if (randomCard.length = 0 && computer2Cards.indexOf(weaponGuessValue) === (-1) && computer2Cards.indexOf(charGuessvalue) === (-1)
+		 && computer2Cards.indexOf(roomGuessValue) === (-1)){
+  		alert('Computer 2 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 2 Wins')
+		location.reload()
 	}
-
-	else if (turn === 'computer2'){
 	
-			for (i=0; i<computer1Cards.length; i++){
-				if (weaponGuessValue === computer1Cards[i]){
-					guessStorage.push(computer1Cards[i])
-				}
-
-			if (charGuessValue === computer1Cards[i]){
-					guessStorage.push(computer1Cards[i])
-				}
-			if (roomGuessValue === computer1Cards[i]){
-					guessStorage.push(computer1Cards[i])
-			}
-		}
-		//computer2 picks a matching card from their hand
-		randomCard = _.shuffle(guessStorage)
-
-		if (randomCard.length > 0){
-			document.getElementById('messages').innerHTML = "computer1 has a card computer2 asked for"
-  			window.setTimeout(turnHandlerComputer2, 2000)
-  		}
-  		else {
-  			document.getElementById('messages').innerHTML = 'no matches with player or computer1'
-  			window.setTimeout(turnHandlerComputer2, 2000)
-		}
-
+	else {
+		window.setTimeout(turnHandlerComputer2, 4000)
 	}
+
 }
 
+//player accusation
 
+document.getElementById('buttonShow').addEventListener('click', accuse)
+
+//when button is pressed it appears
+function accuse(){
+	document.getElementById('accuseForm').style.display = 'inline'
+	document.getElementById('buttonAccuse').addEventListener('click', accuseCheck)
+	currentLocationName = playerPiece.parentElement.id
+	document.getElementById('roomAccuse').innerHTML = currentLocationName
+}
+
+function accuseCheck(){
+	
+document.getElementById('weaponAccuse')
+var weaponAccuseValue = weaponAccuse.value
+document.getElementById('charAccuse')
+var charAccuseValue = charAccuse.value
+document.getElementById('roomAccuse')
+var roomAccuseValue = roomAccuse.value
+
+if (roomEnvelope === roomAccuseValue && weaponEnvelope === weaponAccuseValue && 
+	charEnvelope === charAccuseValue){
+	alert('You won!')
+}
+else {
+	alert('Sorry, you lost! It was ' + charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope)
+}
+
+location.reload()
+
+}
+
+//manages checkmarks for tracking grid
+
+$(document).ready(function(){	 
+$(".box").click(function(){
+     $(this).children(".check").toggle();
+});
+})
+
+
+function computerAccuse(){
+if (computer1Storage.length === 21){
+		alert('Computer 1 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 1 Wins')
+		location.reload()
+	}
+
+if (computer2Storage.length === 21){
+		alert('Computer 2 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 2 Wins')
+	location.reload()
+	}
+
+}
