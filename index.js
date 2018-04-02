@@ -14,9 +14,9 @@ var computer2Storage = []
 computerAccuse()
 
 //sets up game cards
-var roomArray = ['Hall', 'Study', 'Library', 'Billard Room', 'Conservatory', 'Ballroom', 'Kitchen', 'Dining Room', 'Lounge']
-var charArray = ['Miss Scarlet', 'Mr. Green', 'Colonel Mustard', 'Mrs. White', 'Mrs. Peacock', 'Professor Plum']
-var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wrench']
+var roomArray = ['Hall', 'Study', 'Library', 'BillardRoom', 'Conservatory', 'Ballroom', 'Kitchen', 'DiningRoom', 'Lounge']
+var charArray = ['MissScarlet', 'Mr.Green', 'ColonelMustard', 'Mrs.White', 'Mrs.Peacock', 'ProfessorPlum']
+var weaponArray = ['Candlestick', 'Knife', 'LeadPipe', 'Revolver', 'Rope', 'Wrench']
 var playerCards = []
 var computer1Cards = []
 var computer2Cards = []
@@ -85,7 +85,11 @@ function dealing(){
 			computer2Cards.push(cardArray[i])
 			computer2Storage.push(cardArray[i])
 		}
+
 	}	
+	console.log(playerCards)
+	console.log(computer1Cards)
+	console.log(computer2Cards)
 
 // player's cards are displayed
 	for (i = 0; i<playerCards.length; i++){
@@ -93,7 +97,6 @@ function dealing(){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.id = playerCards[i] + 'value'
-		value.innerHTML = playerCards[i]
 		card.appendChild(value);
 		document.getElementById("cardContainer").appendChild(card);
 	}
@@ -104,11 +107,8 @@ function dealing(){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.id = computer1Cards[i]+'value'
-		// value.style.display = 'none'
-		value.innerHTML = computer1Cards[i]
 		card.appendChild(value);
 		document.getElementById("computer1cardContainer").appendChild(card);
-		document.getElementById(computer1Cards[i]+'value').style.display = 'none'
 	}
 
 //computer2's cards are displayed
@@ -117,11 +117,8 @@ function dealing(){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.id = computer2Cards[i]+'value'
-		// value.style.display = 'none'
-		value.innerHTML = computer2Cards[i]
 		card.appendChild(value);
 		document.getElementById("computer2cardContainer").appendChild(card);
-		document.getElementById(computer2Cards[i]+'value').style.display = 'none'
 	}
 
 }

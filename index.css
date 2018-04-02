@@ -1,7 +1,7 @@
 
 .card{
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	border: solid;
 	display: inline-block;
 	text-align: center;
@@ -22,19 +22,6 @@
 	background-color: green;
 
 }
-
-#cardContainer{
-	color: red;
-}
-
-#computer1cardContainer{
-	color: blue;
-}
-
-#computer2cardContainer{
-	color: green;
-}
-
 
 #dice {
 	width: 100px;
@@ -72,7 +59,77 @@ td {width: 100px;
 	display: none;
 }
 
+#Kitchenvalue {
+	width: 200px;
+	height: 200px;
+	background-image: url('images/kitchen.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Ballroomvalue {
+	width: 200px;
+	height: 200px;
+	background-image: url('images/ballroom.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Studyvalue {
+	width: 200px;
+	height: 200px;
+	background-image: url('images/study.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Billardroomvalue {
+	width: 200px;
+	height: 200px;
+	background-image: url('images/billard.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Libraryvalue {
+	width: 200px;
+	height: 200px;
+	background-image: url('images/library.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
 
 
+#Hallvalue {
+	width: 200px;
+	height: 200px;
+	background-image: url('images/hall.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
 
+#DiningRoomvalue{
+	width: 200px;
+	height: 200px;
+	background-image: url('images/dining.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Conservatoryvalue{
+	width: 200px;
+	height: 200px;
+	background-image: url('images/conservatory.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Loungevalue{
+	width: 200px;
+	height: 200px;
+	background-image: url('images/lounge.jpg');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+}
 
