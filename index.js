@@ -14,9 +14,9 @@ var computer2Storage = []
 computerAccuse()
 
 //sets up game cards
-var roomArray = ['Hall', 'Study', 'Library', 'Billard Room', 'Conservatory', 'Ballroom', 'Kitchen', 'Dining Room', 'Lounge']
-var charArray = ['Miss Scarlet', 'Mr. Green', 'Colonel Mustard', 'Mrs. White', 'Mrs. Peacock', 'Professor Plum']
-var weaponArray = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wrench']
+var roomArray = ['Hall', 'Study', 'Library', 'BillardRoom', 'Conservatory', 'Ballroom', 'Kitchen', 'DiningRoom', 'Lounge']
+var charArray = ['MissScarlet', 'MrGreen', 'ColonelMustard', 'MrsWhite', 'MrsPeacock', 'ProfessorPlum']
+var weaponArray = ['Candlestick', 'Knife', 'LeadPipe', 'Revolver', 'Rope', 'Wrench']
 var playerCards = []
 var computer1Cards = []
 var computer2Cards = []
@@ -45,12 +45,14 @@ var board = document.getElementById('board')
 var hall = board.rows[0].cells[1]
 var study = board.rows[0].cells[0]
 var library = board.rows[1].cells[0]
-var lounge = board.rows[1].cells[3]
+var lounge = board.rows[1].cells[2]
 var billardRoom = board.rows[2].cells[0]
-var diningRoom = board.rows[2].cells[3]
+var diningRoom = board.rows[2].cells[2]
 var conservatory = board.rows[3].cells[0]
 var ballRoom = board.rows[3].cells[2]
 var kitchen = board.rows[3].cells[3]
+var square = board.rows[3].cells[1]
+square.id = 'tile'
 var rooms = [hall, study, library, lounge, billardRoom, diningRoom, conservatory, ballRoom, kitchen]
 
 // deal the cards
@@ -85,7 +87,11 @@ function dealing(){
 			computer2Cards.push(cardArray[i])
 			computer2Storage.push(cardArray[i])
 		}
+
 	}	
+	console.log(playerCards)
+	console.log(computer1Cards)
+	console.log(computer2Cards)
 
 // player's cards are displayed
 	for (i = 0; i<playerCards.length; i++){
@@ -93,9 +99,9 @@ function dealing(){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.id = playerCards[i] + 'value'
-		value.innerHTML = playerCards[i]
 		card.appendChild(value);
-		document.getElementById("cardContainer").appendChild(card);
+		document.getElementById("cardContainer").appendChild(card)
+
 	}
 
 //computer1's cards are displayed 
@@ -104,11 +110,9 @@ function dealing(){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.id = computer1Cards[i]+'value'
-		// value.style.display = 'none'
-		value.innerHTML = computer1Cards[i]
 		card.appendChild(value);
-		document.getElementById("computer1cardContainer").appendChild(card);
-		document.getElementById(computer1Cards[i]+'value').style.display = 'none'
+		document.getElementById("computer1cardContainer").appendChild(card)
+		document.getElementById(computer1Cards[i]+'value').style.backgroundImage = "url('images/center2.png')"
 	}
 
 //computer2's cards are displayed
@@ -117,11 +121,9 @@ function dealing(){
 		var value = document.createElement('div')
 		card.className = 'card'
 		value.id = computer2Cards[i]+'value'
-		// value.style.display = 'none'
-		value.innerHTML = computer2Cards[i]
 		card.appendChild(value);
 		document.getElementById("computer2cardContainer").appendChild(card);
-		document.getElementById(computer2Cards[i]+'value').style.display = 'none'
+		document.getElementById(computer2Cards[i]+'value').style.backgroundImage = "url('images/center2.png')"
 	}
 
 }
@@ -130,10 +132,10 @@ function dealing(){
 
 function clearCards(){
 	for (i=0; i<computer1Cards.length; i++){
-		document.getElementById(computer1Cards[i]+'value').style.display = 'none'
+		document.getElementById(computer1Cards[i]+'value').style.backgroundImage = "url('images/center2.jpg')"
 	}
 	for (i=0; i<computer2Cards.length; i++){
-		document.getElementById(computer2Cards[i]+'value').style.display = 'none'
+		document.getElementById(computer2Cards[i]+'value').style.backgroundImage = "url('images/center2.jpg')"
 	}
 	for (i=0; i<playerCards.length; i++){
 		document.getElementById(playerCards[i]+'value').style.backgroundColor = 'white'
@@ -371,9 +373,8 @@ function guessPlayer(){
   	randomCard = _.shuffle(guessStorage)
   		
   	if (randomCard.length > 0){
-  		document.getElementById('messages').innerHTML = "computer1 has a card you asked for"	
-  		document.getElementById(randomCard[0]+'value').style.display = 'inline'
-  		//next turn
+  		document.getElementById('messages').innerHTML = "computer1 has a card you asked for"
+  		document.getElementById(randomCard[0] +'value').style.backgroundImage = ""
   		window.setTimeout(turnHandlerPlayer, 3000)
   	}
   		
@@ -410,7 +411,7 @@ function playerGuess2(){
   		
   	if (randomCard.length > 0) {
   		document.getElementById('messages').innerHTML = "computer2 has a card you asked for"
-  		document.getElementById(randomCard[0]+'value').style.display= 'inline'
+  		document.getElementById(randomCard[0] +'value').style.backgroundImage = ""
   		window.setTimeout(turnHandlerPlayer, 4000)
   	}
 
@@ -460,7 +461,7 @@ function guessComputer1() {
   //if there is a match that card is highlighted. player selects card to show computer
 
 		if (playerCards.indexOf(weaponGuessValue) >= 0){
-			document.getElementById(weaponGuessValue + 'value').style.backgroundColor = 'green'
+			document.getElementById(weaponGuessValue + 'value').style.borderColor = 'green'
 			document.getElementById(weaponGuessValue + 'value').addEventListener('click', function(){
 				if (computer1Storage.indexOf(weaponGuessValue) === -1){
 					computer1Storage.push(weaponGuessValue)
@@ -470,7 +471,7 @@ function guessComputer1() {
 		}
 
 		if (playerCards.indexOf(charGuessValue) >= 0){
-			document.getElementById(charGuessValue + 'value').style.backgroundColor = 'green'
+			document.getElementById(charGuessValue + 'value').style.borderColor = 'green'
 			document.getElementById(charGuessValue + 'value').addEventListener('click', function(){
 				if (computer1Storage.indexOf(charGuessValue) === -1){
 					computer1Storage.push(charGuessValue)
@@ -480,7 +481,7 @@ function guessComputer1() {
 		}
 
 		if (playerCards.indexOf(roomGuessValue) >= 0){
-			document.getElementById(roomGuessValue + 'value').style.backgroundColor = 'green'
+			document.getElementById(roomGuessValue + 'value').style.borderColor = 'green'
 			document.getElementById(charGuessValue + 'value').addEventListener('click', function(){
 				if (computer1Storage.indexOf(roomGuessValue) === -1){
 					computer1Storage.push(roomGuessValue)
@@ -512,7 +513,7 @@ function guessComputer2(){
 	charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue + '.  If you have a match please select it now'
 
 	if (playerCards.indexOf(weaponGuessValue) >= 0){
-		document.getElementById(weaponGuessValue + 'value').style.backgroundColor = 'green'
+		document.getElementById(weaponGuessValue + 'value').style.borderColor = 'green'
 		document.getElementById(weaponGuessValue + 'value').addEventListener('click', function(){
 				if (computer2Storage.indexOf(weaponGuessValue) === -1){
 					computer2Storage.push(weaponGuessValue)
@@ -522,7 +523,7 @@ function guessComputer2(){
 		}
 
 	if (playerCards.indexOf(charGuessValue) >= 0){
-		document.getElementById(charGuessValue + 'value').style.backgroundColor = 'green'
+		document.getElementById(charGuessValue + 'value').style.borderColor = 'green'
 		document.getElementById(charGuessValue + 'value').addEventListener('click', function(){
 				if (computer2Storage.indexOf(charGuessValue) === -1){
 					computer2Storage.push(charGuessValue)
@@ -532,7 +533,7 @@ function guessComputer2(){
 		}
 
 	if (playerCards.indexOf(roomGuessValue) >= 0){
-		document.getElementById(roomGuessValue + 'value').style.backgroundColor = 'green'
+		document.getElementById(roomGuessValue + 'value').style.borderColor = 'green'
 		document.getElementById(roomGuessValue + 'value').addEventListener('click', function(){
 				if (computer2Storage.indexOf(roomGuessValue) === -1){
 					computer2Storage.push(roomGuessValue)

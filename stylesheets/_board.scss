@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+body {
+	background-color: green;
+	font-family: 'Press Start 2P'
+}
+
+
+#start {
+	width: 100px;
+	height: 100px;
+	background-color: red;
+}
+
+#currentTurn {width: 100px;
+	height: 100px;
+	background-color: green;
+
+}
+
+#diceContainer{
+	width: 150px;
+	height: 200px;
+	background-color: white;
+	border: solid 5px;
+}
+
+#dice {
+	width: 100px;
+	height: 100px;
+	background-image: url('../images/dice.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#dice_result {
+font-size: 40px;
+float: right;
+color: red;
+
+}
+
+.piece{
+width: 120px;
+height: 80px;
+border: solid;
+border-radius: 25%;
+text-align: center;
+background-color: lightblue;
+
+}
+
+table, th, td {
+    border: 5px solid black;
+}
+td {width: 150px;
+	height: 150px;}
+
+#accuseForm {
+	display: none;
+}
+
+.check{
+	font-size: 100px;
+	display: none;
+}
+
+
+#Study{
+	background-image: url('../images/studyimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+
+}
+
+#BallRoom{
+	background-image: url('../images/ballroomimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+
+}
+
+#BillardRoom{
+	background-image: url('../images/billardroomimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Conservatory{
+	background-image: url('../images/conservatoryimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#DiningRoom{
+	background-image: url('../images/diningroomimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#Hall{
+	background-image: url('../images/hallimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+
+}
+
+#Kitchen{
+	background-image: url('../images/kitchenimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+
+}
+
+#Lounge{
+	background-image: url('../images/loungeimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+
+}
+
+#Library{
+	background-image: url('../images/libraryimage.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+
+}
+
+#tile {
+	background-image: url('../images/tile.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+
+}
+
+#center1{
+	background-image: url('../images/center1.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
+#center2{
+	background-image: url('../images/center2.png');
+	background-size:100% 100%;
+	background-image: no-repeat;
+}
+
