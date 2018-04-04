@@ -6,23 +6,24 @@ body {
 }
 
 
+#buttonShow{
+	color: red;
+	float: right;
+	margin-top: 10px;
+}
+
 #start {
+	margin: 5px;
 	width: 100px;
-	height: 100px;
-	background-color: red;
+	height: 50px;
+	float: right;
+	margin-top: 10px;
 }
 
 #currentTurn {width: 100px;
 	height: 100px;
 	background-color: green;
 
-}
-
-#diceContainer{
-	width: 150px;
-	height: 200px;
-	background-color: white;
-	border: solid 5px;
 }
 
 #dice {
@@ -35,9 +36,12 @@ body {
 
 #dice_result {
 font-size: 40px;
-float: right;
 color: red;
 
+}
+
+#dicecontainer{
+	width: 200px;
 }
 
 .piece{
@@ -54,14 +58,19 @@ table, th, td {
     border: 5px solid black;
 }
 td {width: 150px;
-	height: 150px;}
+	height: 150px;
+	background-color: white;
+	}
 
+th{background-color: grey;
+	color: black;
+}
 #accuseForm {
 	display: none;
 }
 
 .check{
-	font-size: 100px;
+	font-size: 80px;
 	display: none;
 }
 
@@ -145,3 +154,22 @@ td {width: 150px;
 	background-image: no-repeat;
 }
 
+.grid1{
+	position: relative;
+	left: 60%;
+	bottom: 200px;
+
+}
+
+.grid2{
+	position: relative;
+	bottom: 1350px;
+	left: 30%;
+
+}
+
+.grid3{
+	position: relative;
+	bottom: 2280px;
+	left: 1%;
+}
