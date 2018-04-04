@@ -5959,21 +5959,22 @@ body {
   background-color: green;
   font-family: "Press Start 2P"; }
 
+#buttonShow {
+  color: red;
+  float: right;
+  margin-top: 10px; }
+
 #start {
+  margin: 5px;
   width: 100px;
-  height: 100px;
-  background-color: red; }
+  height: 50px;
+  float: right;
+  margin-top: 10px; }
 
 #currentTurn {
   width: 100px;
   height: 100px;
   background-color: green; }
-
-#diceContainer {
-  width: 150px;
-  height: 200px;
-  background-color: white;
-  border: solid 5px; }
 
 #dice {
   width: 100px;
@@ -5984,8 +5985,10 @@ body {
 
 #dice_result {
   font-size: 40px;
-  float: right;
   color: red; }
+
+#dicecontainer {
+  width: 200px; }
 
 .piece {
   width: 120px;
@@ -6000,13 +6003,18 @@ table, th, td {
 
 td {
   width: 150px;
-  height: 150px; }
+  height: 150px;
+  background-color: white; }
+
+th {
+  background-color: grey;
+  color: black; }
 
 #accuseForm {
   display: none; }
 
 .check {
-  font-size: 100px;
+  font-size: 80px;
   display: none; }
 
 #Study {
@@ -6068,5 +6076,86 @@ td {
   background-image: url("../images/center2.png");
   background-size: 100% 100%;
   background-image: no-repeat; }
+
+.grid1 {
+  position: relative;
+  left: 60%;
+  bottom: 200px; }
+
+.grid2 {
+  position: relative;
+  bottom: 1350px;
+  left: 30%; }
+
+.grid3 {
+  position: relative;
+  bottom: 2280px;
+  left: 1%; }
+
+#introbody {
+  background-color: black; }
+
+#header {
+  width: 550px;
+  height: 250px;
+  border: solid 20px red;
+  background-color: green;
+  color: white;
+  position: relative;
+  top: 100px;
+  text-align: center;
+  font-size: 110px;
+  padding: 30px; }
+
+#introbox {
+  color: red;
+  font-size: 40px;
+  position: relative;
+  top: 100px;
+  text-align: center;
+  width: 100%; }
+
+#begin {
+  color: white;
+  font-size: 40px;
+  position: relative;
+  top: 100px;
+  text-align: center;
+  width: 100%;
+  margin: 10px; }
+
+a {
+  text-decoration: none;
+  color: white; }
+
+a:hover {
+  color: green;
+  text-decoration: none; }
+
+#story1 {
+  font-size: 25px;
+  color: white;
+  text-align: center; }
+
+#charimages {
+  display: none; }
+
+#story2 {
+  font-size: 25px;
+  color: white;
+  display: none;
+  text-align: center; }
+
+#story3 {
+  font-size: 50px;
+  color: red;
+  display: none;
+  text-align: center; }
+
+#story4 {
+  font-size: 25px;
+  color: white;
+  display: none;
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

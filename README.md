@@ -1,3 +1,10 @@
 # Clue
 
-dice image from https://thenounproject.com/jistone/collection/retro-gaming/?i=573342#_=_
+dice image from vectreezy
+
+music by dAmbient
+https://freesound.org/people/dAmbient/sounds/251936/
+
+start music by Plasterbrain
+
+https://freesound.org/people/plasterbrain/sounds/243020/

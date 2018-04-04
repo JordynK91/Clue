@@ -7,18 +7,19 @@
 </head>
 <body>
 
-
 <div class = Container>
   <div class = row>
+       <div class = col-md-1>
+              <div id = 'dice'></div>
+        </div>
+        <div class = col-md-1>
+              <div id = 'dice_result'></div>
+         </div>
 
-    <div class = col-md-8>
-    </div>
-
-<div class = 'col-md-4'>
-<button type = 'button' id = 'buttonShow'>
-Click to Accuse
-</button>
-
+  <div class = col-md-8>
+      <button type = 'button' id = 'buttonShow'>
+      Click to Accuse
+      </button>
 
 <form action="" id="accuseForm">
 
@@ -51,22 +52,15 @@ in the
   </form>
 
 </div>
+
+<div class = 'col-md-2'>
+  <button type ='button' id = 'start'>
+      New Game
+     </button> 
+</div>
+
 </div>
 </div>
-
- 
-  <div id = 'start'>
-  New Game
-  </div>
-
-  <div id = diceContainer>
-  <div id = 'dice'>
-  </div>
-
-  <div id = 'dice_result'>
-  </div>
-  </div>
-
 
 <div id = guessContainer>
 
@@ -171,110 +165,13 @@ in the
   <div class = 'piece' id = 'computer2Piece'>Computer 2</div>
 
 
-<!-- 
-<div class = 'container'>
-<div class = 'row'>
-<div class = 'col-lg-4'>
-<table id = board style="width: 100%">
-    <tr>
-    <th>Suspects</th>
-    <th>Player</th>
-    <th>Computer1</th>
-    <th>Computer2</th>
-  </tr>
-  <tr>
-    <td>Colonel Mustard</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-  <tr>
-    <td>Mr. Green</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-  <tr>
-    <td>Miss Scarlet</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-  <tr>
-    <td>Mrs. Peacock</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
- <tr>
-    <td>Mrs. White</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
- <tr>
-    <td>Professor Plum</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-</table>
-</div> -->
-
-<!-- <div class = 'col-lg-4'>
-<table id = board style="width:100%">
-     <tr>
-    <th>Weapons</th>
-    <th>Player</th>
-    <th>Computer1</th>
-    <th>Computer2</th>
-  </tr>
-  <tr>
-    <td>Rope</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-  <tr>
-    <td>Revolver</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-  <tr>
-    <td>Wrench</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-  <tr>
-    <td>Knife</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
- <tr>
-    <td>Candlestick</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
- <tr>
-    <td>Lead Pipe</td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td>
-    <td class = 'box'> <div class = 'check'> X </div></td> 
-  </tr>
-</table>
-</div>
-
-<div class = 'col-lg-4'>
-<table id = board style="width:100%">
+<div class = grid1>
+<table id = board style="width:20%">
     <tr>
     <th>Rooms</th>
     <th>Player</th>
-    <th>Computer1</th>
-    <th>Computer2</th>
+    <th>Comp1</th>
+    <th>Comp2</th>
   </tr>
   <tr>
     <td>Hall</td>
@@ -334,19 +231,107 @@ in the
   </tr>
 
 </table>
-</div>
 
 </div>
+
+<div class = 'grid2'>
+<table id = board style="width:10%">
+     <tr>
+    <th>Weapons</th>
+    <th>Player</th>
+    <th>Comp1</th>
+    <th>Comp2</th>
+  </tr>
+  <tr>
+    <td>Rope</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+  <tr>
+    <td>Revolver</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+  <tr>
+    <td>Wrench</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+  <tr>
+    <td>Knife</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+ <tr>
+    <td>Candlestick</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+ <tr>
+    <td>Lead Pipe</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+</table>
 </div>
 
- -->
-
+<div class = 'grid3'>
+<table id = board style="width: 10%">
+    <tr>
+    <th>Suspects</th>
+    <th>Player</th>
+    <th>Comp1</th>
+    <th>Comp2</th>
+  </tr>
+  <tr>
+    <td>Colonel Mustard</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+  <tr>
+    <td>Mr. Green</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+  <tr>
+    <td>Miss Scarlet</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+  <tr>
+    <td>Mrs. Peacock</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+ <tr>
+    <td>Mrs. White</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+ <tr>
+    <td>Professor Plum</td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td>
+    <td class = 'box'> <div class = 'check'> X </div></td> 
+  </tr>
+</table>
+</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="node_modules/lodash/lodash.js"></script>
 <script type="text/javascript" src ="index.js"></script>
-
 
 </body>
 </html>
