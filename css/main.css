@@ -6087,6 +6087,17 @@ label {
   text-decoration: line-through;
   color: grey; }
 
+#guessForm {
+  margin-top: 5px;
+  margin-left: 15px;
+  display: none; }
+
+#computerGuess {
+  margin: 5px; }
+
+#messages {
+  margin: 5px; }
+
 #introbody {
   background-color: black; }
 
