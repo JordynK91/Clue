@@ -3,7 +3,7 @@
 var turn = 'player';
 
 //sets up computer movement
-var computerMoves 
+var computerMoves;
 
 //sets up computer guesses
 var weaponGuessValue;
@@ -11,7 +11,7 @@ var roomGuessValue; ;
 var guessStorage = []
 var computer1Storage = []
 var computer2Storage = []
-computerAccuse()
+
 
 //sets up game cards
 var roomArray = ['Hall', 'Study', 'Library', 'BillardRoom', 'Conservatory', 'Ballroom', 'Kitchen', 'DiningRoom', 'Lounge']
@@ -54,6 +54,12 @@ var kitchen = board.rows[3].cells[3]
 var square = board.rows[3].cells[1]
 square.id = 'tile'
 var rooms = [hall, study, library, lounge, billardRoom, diningRoom, conservatory, ballRoom, kitchen]
+
+
+//communication with player
+var messages = document.getElementById('messages')
+var guessForm = document.getElementById('guessForm')	
+var computerGuess = document.getElementById('computerGuess').innerHTML
 
 // new start
 var start = document.getElementById('start')
@@ -109,8 +115,11 @@ function dealing(){
 		value.id = playerCards[i] + 'value'
 		card.appendChild(value);
 		document.getElementById("cardContainer").appendChild(card)
-
 	}
+//dice instructions
+	messages.innerHTML = 'Click the dice icon to roll the dice.'
+
+
 
 //computer1's cards are displayed 
 	for (i = 0; i<computer1Cards.length; i++){
@@ -156,35 +165,34 @@ function clearCards(){
 //switch from player to computer1
 function turnHandlerPlayer(){
 	    turn = 'computer1'
-	    document.getElementById('messages').innerHTML = "It is computer1's turn"
+	    messages.innerHTML = "It is computer1's turn"
 	    guessStorage.splice(0,guessStorage.length)
 	    window.setTimeout(clearCards, 3000)
-	 	window.setTimeout(rollDice, 3000)
+	 	window.setTimeout(rollDice, 4000)
 	 	console.log(computer1Storage)
 	 	console.log(computer2Storage)
-
+	 	computerAccuse()
 }
 
 //switch from computer1 to computer2
 function turnHandlerComputer1(){
 		turn = 'computer2'
-		document.getElementById('messages').innerHTML = "It is computer2's turn"
+		messages.innerHTML = "It is computer2's turn"
 		guessStorage.splice(0,guessStorage.length)
 		window.setTimeout(clearCards, 3000)
-		window.setTimeout(rollDice, 3000)	
+		window.setTimeout(rollDice, 4000)	
 		console.log(computer1Storage)
 	 	console.log(computer2Storage)
+	 	computerAccuse()
 }
 
 //switch from computer2 to player
 function turnHandlerComputer2(){
 		turn = 'player'
 		guessStorage.splice(0,guessStorage.length)
-		console.log(computer1Storage)
-	 	console.log(computer2Storage)
 		window.setTimeout(clearCards, 3000)
 		document.getElementById('computerGuess').innerHTML = ''
-		document.getElementById('messages').innerHTML = "It is your turn. roll the dice and take your turn"
+		messages.innerHTML = "It is your turn. roll the dice and take your turn"
 }
 
 //player clicks dice to start
@@ -201,11 +209,15 @@ function rollDice(){
 	//where is the piece currently
 	if (turn === 'player'){
 		 currentLocation = playerPiece.parentElement
+		 messages.innerHTML = 'Click a room highlighted in yellow to move to that location.'
+
 	}
 	else if (turn === 'computer1'){
+		messages.innerHTML = ''
 		 currentLocation = computer1Piece.parentElement
 	}
 	else if (turn === 'computer2'){
+		messages. innerHTML = ''
 		 currentLocation = computer2Piece.parentElement
 	}
 	//roll the die
@@ -317,7 +329,7 @@ function rollDice(){
 //move the player piece
 
 function movePlayer(e){
-	e.target.appendChild(playerPiece)	
+	e.target.appendChild(playerPiece)
 }
 
 //moves computer piece and sets ups guess values for weapon and charecter
@@ -325,9 +337,10 @@ function moveComputer(){
 	if (turn === 'computer1'){
 		computerMoves[0].appendChild(computer1Piece)
 		window.setTimeout(guessComputer1, 3000)
-		charGuessValue =  _.sample(charArray)
 		weaponGuessValue = _.sample(weaponArray)
-	}
+		charGuessValue = _.sample(charArray)
+		}
+		
 
 	else if (turn === 'computer2'){
 		computerMoves[0].appendChild(computer2Piece)
@@ -349,7 +362,8 @@ function guessSetUp(){
 	}
 	var currentLocationName = playerPiece.parentElement.id
 	document.getElementById('roomGuess').innerHTML = currentLocationName
-	document.getElementById('messages').innerHTML = "submit a guess"	
+	messages.innerHTML = "Submit a guess:"	
+	document.getElementById('guessForm').style.display = 'block'	
 }	
 
 //player submits guess
@@ -365,6 +379,7 @@ function guessPlayer(){
 	document.getElementById('roomGuess')
 	var roomGuessValue = roomGuess.value
 
+	document.getElementById('guessForm').style.display = 'none'
 	//player guess is compared with computer 1's cards
 	for (i=0; i < computer1Cards.length; i++){
 		if (weaponGuessValue === computer1Cards[i]){
@@ -381,14 +396,14 @@ function guessPlayer(){
   	randomCard = _.shuffle(guessStorage)
   		
   	if (randomCard.length > 0){
-  		document.getElementById('messages').innerHTML = "computer1 has a card you asked for"
+  		messages.innerHTML = "Computer1 has a card you asked for"
   		document.getElementById(randomCard[0] +'value').style.backgroundImage = ""
   		window.setTimeout(turnHandlerPlayer, 3000)
   	}
   		
   		//if computer1 doesn't have a match to player's guess it goes to computer 2
   	else {
- 		document.getElementById('messages').innerHTML = "computer1 does not have a match"
+ 		messages.innerHTML = "Computer1 does not have a match. Now asking Computer2"
   		window.setTimeout(playerGuess2, 3000)
   	}
 }
@@ -418,13 +433,13 @@ function playerGuess2(){
   	randomCard = _.shuffle(guessStorage)
   		
   	if (randomCard.length > 0) {
-  		document.getElementById('messages').innerHTML = "computer2 has a card you asked for"
+  		messages.innerHTML = "Computer2 has a card you asked for"
   		document.getElementById(randomCard[0] +'value').style.backgroundImage = ""
   		window.setTimeout(turnHandlerPlayer, 4000)
   	}
 
   	else {
-  		document.getElementById('messages').innerHTML = 'no matches with computer1 or computer2'
+  		messages.innerHTML = 'No matches with Computer1 or Computer2'
   		window.setTimeout(turnHandlerPlayer, 4000)
   	}
 }
@@ -432,7 +447,7 @@ function playerGuess2(){
 //computer1 compares their guess with computer2's hand
 function guessComputer1() {
 	roomGuessValue = computer1Piece.parentElement.id		
-	document.getElementById('computerGuess').innerHTML = 'Computer1 says it was ' + 
+	document.getElementById('computerGuess').innerHTML = 'Computer1 guesses it was ' + 
 	charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue
 
 	for (i=0; i<computer2Cards.length; i++){
@@ -460,8 +475,9 @@ function guessComputer1() {
 
   	else if (randomCard.length === 0) {
   			guess2Computer1()
+  			messages.innerHTML = "Computer2 does not have a match with Computer1's Guess"
   	}
-  }
+}
 
 
   function guess2Computer1(){
@@ -506,7 +522,7 @@ function guessComputer1() {
   		}
   		if (playerCards.indexOf(weaponGuessValue) === (-1) && playerCards.indexOf(charGuessValue) === (-1) && 
 			playerCards.indexOf(roomGuessValue) === (-1)){
-			document.getElementById('messages').innerHTML = "you do not match with computer1. computer1's turn is over"
+			messages.innerHTML = "You do not match with computer1. Computer1's turn is over"
   			window.setTimeout(turnHandlerComputer1, 4000)
   		}
 }
@@ -518,7 +534,7 @@ function guessComputer2(){
 
 	roomGuessValue = computer2Piece.parentElement.id
 	document.getElementById('computerGuess').innerHTML = 'Computer2 says it was ' + 
-	charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue + '.  If you have a match please select it now'
+	charGuessValue + ' with the ' + weaponGuessValue + ' in the ' + roomGuessValue + '.  If you have a match please select it now.'
 
 	if (playerCards.indexOf(weaponGuessValue) >= 0){
 		document.getElementById(weaponGuessValue + 'value').style.border = 'yellow solid 10px'
@@ -552,7 +568,7 @@ function guessComputer2(){
 
 	if (playerCards.indexOf(weaponGuessValue) === (-1) && playerCards.indexOf(charGuessValue) === (-1) && 
 			playerCards.indexOf(roomGuessValue) === (-1)){
-			document.getElementById('messages').innerHTML = 'you do not match with computer2. computer1 will now see if it has a match'
+			messages.innerHTML = 'You do not match with computer2. Computer1 will now see if it has a match'
   			window.setTimeout(guess2Computer2, 4000)
 	}
 }
@@ -576,7 +592,7 @@ function guess2Computer2(){
 	randomCard = _.shuffle(guessStorage)
 
 	if (randomCard.length > 0){
-		document.getElementById('messages').innerHTML = "computer1 has a card computer2 asked for"
+		messages.innerHTML = "Computer1 has a card Computer2 asked for"
 		if (computer1Storage.indexOf(randomCard[0]) === -1){
 			computer1Storage.push(randomCard[0])
 		}
@@ -617,36 +633,51 @@ var charAccuseValue = charAccuse.value
 document.getElementById('roomAccuse')
 var roomAccuseValue = roomAccuse.value
 
-if (roomEnvelope === roomAccuseValue && weaponEnvelope === weaponAccuseValue && 
-	charEnvelope === charAccuseValue){
-	alert('You won!')
-}
-else {
-	alert('Sorry, you lost! It was ' + charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope)
-}
+	if (roomEnvelope === roomAccuseValue && weaponEnvelope === weaponAccuseValue && 
+		charEnvelope === charAccuseValue){
+		alert('You won!')
+	}	
+	else {
+		alert('Sorry, you lost! It was ' + charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope)
+	}
 
 location.reload()
 
-}
+	}
 
-//manages checkmarks for tracking grid
 
-$(document).ready(function(){	 
-$(".box").click(function(){
-     $(this).children(".check").toggle();
-});
-})
-
+var randoarray = [0,1,2]
 
 function computerAccuse(){
-if (computer1Storage.length === 21){
-		alert('Computer 1 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 1 Wins')
+	console.log('accusefunction')
+	if (computer1Storage.length >= 18 && turn === 'computer1'){
+		var rando = _.sample(randoarray)
+		console.log(rando)
+		if (rando === 0){
+			alert('Computer 1 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 1 Wins!')
+		location.reload()
+		}
+	}
+
+	if (computer2Storage.length >= 18 && turn === 'computer2'){
+		var rando = _.sample(randoarray)
+		console.log(rando)
+		if (rando === 0){
+			alert('Computer 1 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 1 Wins!')
+		location.reload()
+		}
+	}
+
+	if (computer1Storage.length === 21 && turn === 'computer1'){
+		alert('Computer 1 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 1 Wins!')
 		location.reload()
 	}
 
-if (computer2Storage.length === 21){
-		alert('Computer 2 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 2 Wins')
+	if (computer2Storage.length === 21 && turn === 'computer2'){
+		alert('Computer 2 Accuses ' +  charEnvelope + ' with the ' + weaponEnvelope+ ' in the ' + roomEnvelope + '. Computer 2 Wins!')
 	location.reload()
 	}
 
 }
+
+
