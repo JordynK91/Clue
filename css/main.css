@@ -6077,20 +6077,15 @@ th {
   background-size: 100% 100%;
   background-image: no-repeat; }
 
-.grid1 {
-  position: relative;
-  left: 60%;
-  bottom: 200px; }
+#grid {
+  color: black; }
 
-.grid2 {
-  position: relative;
-  bottom: 1350px;
-  left: 30%; }
+label {
+  font-size: 15px; }
 
-.grid3 {
-  position: relative;
-  bottom: 2280px;
-  left: 1%; }
+.strikethrough:checked + label {
+  text-decoration: line-through;
+  color: grey; }
 
 #introbody {
   background-color: black; }
