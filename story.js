@@ -25,6 +25,6 @@ function music2(){
 audio.src = 'start.ogg';
 	audio.play()
 setTimeout(function () {
-        location.href = 'index.html';
+        location.href = 'game.html';
     }, 1000);
 }

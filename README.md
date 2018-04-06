@@ -16,13 +16,13 @@
 
 <h1> Tech Specs</h1>
 
-<p> This was primarily an excerise in vanilla JavaScript, with a bit of jQuery and <a href = https://github.com/lodash/lodash> lodash </a> thrown in. For styling, I used SASS and <a href = 'https://github.com/twbs/bootstrap-sass'> Bootstrap </a> </p>.
+<p> This was primarily an excerise in vanilla JavaScript, with a bit of jQuery and <a href = https://github.com/lodash/lodash> lodash </a> thrown in. For styling, I used SASS and <a href = 'https://github.com/twbs/bootstrap-sass'> Bootstrap </a> </p>
 
 <hr>
 
 <h1> Some Notes on the A.I. </h1>
 
-<p>The two computer players do not play with the same strategy as a human being. In fact, they don't play strategically at all. Their guesses are entirely random. However, the computer can win! If a computer player has 'seen' 15 or more of the cards (not including the hidden cards), they have a 33% chance of making an accusation. If they have 'seen' 18 of the cards (again, not including the hidden cards) they automatically make an accusation. The computer's accusation is always correct. </p>
+<p>The two computer players do not play with the same strategy as a human being. In fact, they don't play strategically at all. Their guesses are entirely random. However, the computer can win! If a computer player has 'seen' 15 or more of the cards (not including the hidden cards), they have a 25% chance of making an accusation. If they have 'seen' 18 of the cards (again, not including the hidden cards) they automatically make an accusation. The computer's accusation is always correct. </p>
 
 <p>Interesting side note: studies have been done on the A.I. from the <a href = 'https://en.wikipedia.org/wiki/Clue_(1998_video_game)'>1998 video game adapation </a> of Clue. It's apparently an excellent framework for introductory studies in propositional logic. </p>
 
