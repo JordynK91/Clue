@@ -24,6 +24,9 @@ var roomEnvelope = _.sample(roomArray)
 var charEnvelope = _.sample(charArray)
 var weaponEnvelope = _.sample(weaponArray)
 
+console.log(roomEnvelope)
+console.log(charEnvelope)
+console.log(weaponEnvelope)
 
 //dice and player pieces 
 var dice = document.getElementById('dice')
