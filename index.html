@@ -1,220 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-	<link rel="stylesheet" type="text/css" href= 'css/main.css'>
+	<link rel="stylesheet" type="text/css" href= 'css/main.css?v=1'>
 	<title>Clue</title>
 </head>
-<body>
+<body id = 'introbody'>
 
-<div class = Container>
-  <div class = row>
-       <div class = col-md-1>
-              <div id = 'dice'></div>
-        </div>
-        <div class = col-md-1>
-              <div id = 'dice_result'></div>
-         </div>
-
-  <div class = col-md-8>
-      <button type = 'button' id = 'buttonShow'>
-      Click to Accuse
-      </button>
-
-<form action="" id="accuseForm">
-
-It was
-<select id = charAccuse>
-  <option value="Miss Scarlet">Miss Scarlet</option>
-  <option value="Mr. Green">Mr. Green</option>
-  <option value="Colonel Mustard">Colonel Mustard</option>
-  <option value="Mrs. White">Mrs. White</option>
-  <option value="Mrs. Peacock">Mrs. Peacock</option>
-  <option value="Professor Plum">Professor Plum</option>
-  </select>
-
-with the
-<select id = weaponAccuse>
-  <option value="Knife">Knife </option>
-  <option value="Candlestick">Candlestick</option>
-  <option value="Lead Pipe">Lead Pipe</option>
-  <option value="Revolver">Revolver</option>
-  <option value="Rope">Rope</option>
-  <option value="Wrench">Wrench</option>
-  </select>
-
-in the 
-  <select>
-  <option id = roomAccuse></option>
-  </select>
-
-  <button type = 'button' id = 'buttonAccuse'>Submit</button>
-  </form>
-
+<div class = 'container'>
+	<div class = 'row'>
+		<div class = 'center-block' id = 'header'>
+			 CLUE 
+		</div>
+	</div>
 </div>
 
-<div class = 'col-md-2'>
-  <button type ='button' id = 'start'>
-      New Game
-     </button> 
-</div>
+	<div class = 'row'>
+		<div id = 'introbox'>
+			<h1>The Classic Detective Game<h1>
+			<h3> Now for the World Wide Web! </h3>
+		</div>
+	</div>
 
-</div>
-</div>
-
-<div class = Container>
-  <div class = row>
-    <div class = 'col-md-4'>
-    <div id = computerGuess>
-    </div>
-  </div>
-</div>
-
-<div class = row>
-  <div class = 'col-md-6'>
-  <div id = messages>
-  </div>
-</div>
-</div>
-
-</div>
-</div>
-
-
-<form action="" id="guessForm">
-
-I think it was
-<select id = charGuess>
-  <option value="MissScarlet">Miss Scarlet</option>
-  <option value="MrGreen">Mr. Green</option>
-  <option value="ColonelMustard">Colonel Mustard</option>
-  <option value="MrsWhite">Mrs. White</option>
-  <option value="MrsPeacock">Mrs. Peacock</option>
-  <option value="ProfessorPlum">Professor Plum</option>
-  </select>
-
-with the
-<select id = weaponGuess>
-  <option value="Knife">Knife </option>
-  <option value="Candlestick">Candlestick</option>
-  <option value="LeadPipe">LeadPipe</option>
-  <option value="Revolver">Revolver</option>
-  <option value="Rope">Rope</option>
-  <option value="Wrench">Wrench</option>
-  </select>
-
-in the 
-  <select>
-  <option id = roomGuess></option>
-  </select>
-
-  <button type = 'button' id = 'button'>Submit</button>
-  </form>
-
-
-<br>
-
-<div class = Container>
-<div class = row>
-
-<div class = col-lg-6>
-<table id = board style="width:100%">
-  <tr>
-  	<td id = 'Study'> </td>
-    <td id = 'Hall'></td>
-    <td id = 'tile'></td>
-    <td id = 'tile'></td>
-  </tr>
-  <tr>
-    <td id = 'Library'></td>
-    <td colspan="2" id = 'center1'></td>
-    <td id = 'Lounge'></td>
-  </tr>
-  <tr>
-    <td id = 'BillardRoom'></td>
-    <td colspan="2" id = 'center2'></td>
-    <td id = 'DiningRoom'></td>
-  </tr>
- <tr>
-    <td id = 'Conservatory'><td>
-    <td id = 'BallRoom'></td> 
-    <td id = 'Kitchen'></td>
-  </tr>
-</table>
-</div>
-
-<div class = col-lg-6>
-  <div id = 'cardContainer'>
-  </div>
-  <br>
-  <div id = 'computer1cardContainer'>
-  </div>
-  <br>
-  <div id = 'computer2cardContainer'>
-  </div>
-  <br>
-<form id = 'grid'>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Hall</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Study</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Library</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Conservatory</label>
-        <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Billard Room</label>
-        <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Ball Room</label>
-        <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Kitchen</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Dining Room</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Lounge</label>
-       <br>
-       <br>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Miss Scarlet</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Mr.Green</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Mrs. White</label>
-      <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Mrs. Peacock</label>
-        <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Colonel Mustard</label>
-        <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Professor Plum</label>
-      <br>
-      <br>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Rope</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Wrench</label>
-       <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Revolver</label>
-      <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Knife</label>
-        <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Candlestick</label>
-        <input type="checkbox" class = 'strikethrough' name="checkbox" value="checkbox">
-       <label for="checkbox">Lead Pipe</label>
-  </form>
-</div>
-</div>
-</div>
-
-
-  <div class = 'piece' id = 'playerPiece'>Player</div>
-  <div class = 'piece' id = 'computer1Piece'>Computer 1</div>
-  <div class = 'piece' id = 'computer2Piece'>Computer 2</div>
-
+	<div class = 'row'>
+			<div id ='begin'>
+		<a href = '#'>Click to Begin</a>
+			</div>
+	</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="node_modules/lodash/lodash.js"></script>
 <script type="text/javascript" src ="index.js"></script>
-
 </body>
 </html>

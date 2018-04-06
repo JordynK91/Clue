@@ -21,6 +21,12 @@ body {
 	margin-top: 10px;
 }
 
+
+#rules {
+	margin-top: 10px;
+
+}
+
 #currentTurn {width: 100px;
 	height: 100px;
 	background-color: green;
@@ -67,10 +73,6 @@ th{background-color: grey;
 	color: black;
 }
 
-
-#accuseForm {
-	display: none;
-}
 
 .check{
 	font-size: 80px;
@@ -185,3 +187,54 @@ label {
 #messages{
 	margin: 5px;
 }
+
+#modal {
+	position: fixed;
+	left: 35%;
+	top: 10%;
+	width: 700px;
+	height: 600px;
+	background-color: white;
+	color: black;
+	display: none;
+	border: solid;
+}
+
+#modal-content{
+	margin: 10px;
+}
+
+#modal-close{
+	border: solid;
+	width: 20px;
+	background-color: grey;
+}
+
+#modal-header{
+	text-align: center;
+}
+
+
+#accuseModal {
+	display: none;
+	position: fixed;
+	left: 35%;
+	top: 10%;
+	border: solid;
+	background-color: lightgrey;
+	width: 300px;
+	height: 200px;
+	text-align: center;
+}
+
+#accuseHeader{
+	color: red;
+}
+
+#accuseModal-close{
+	border: solid;
+	width: 20px;
+	background-color: grey;
+}
+
+
